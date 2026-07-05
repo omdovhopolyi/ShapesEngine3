@@ -9,7 +9,7 @@
 #include <memory>
 #include <list>
 
-namespace shen
+namespace shen3
 {
     class Messenger
         : public Singleton<Messenger>

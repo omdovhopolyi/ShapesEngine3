@@ -1,6 +1,6 @@
 #include <Messenger/SubscriptionsContainer.h>
 
-namespace shen
+namespace shen3
 {
     SubcriptionsContainer::~SubcriptionsContainer()
     {

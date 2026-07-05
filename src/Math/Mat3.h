@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
+#include <glm/mat3x3.hpp>
 
 namespace shen3
 {

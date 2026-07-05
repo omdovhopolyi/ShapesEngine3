@@ -4,7 +4,7 @@
 namespace shen3
 {
     XmlDataElementWrapper::XmlDataElementWrapper(tinyxml2::XMLElement* element)
-        , _element(element)
+        : _element(element)
     { }
 
     void XmlDataElementWrapper::LoadFile(const std::string& filename)
@@ -28,7 +28,7 @@ namespace shen3
     std::shared_ptr<DataElementWrapper> XmlDataElementWrapper::GetChildElement(const std::string& id) const
     {
         if (_element) {
-            return std::make_shared<XmlDataElementWrapper>(GetSystems(), _element->FirstChildElement(id.c_str()));
+            return std::make_shared<XmlDataElementWrapper>(_element->FirstChildElement(id.c_str()));
         }
         return nullptr;
     }
@@ -110,7 +110,7 @@ namespace shen3
         return defaultVal;
     }
 
-    Vec3 XmlDataElementWrapper::GetVec3(const std::string& id, const Vec3& defaultVal = {}) const
+    Vec3 XmlDataElementWrapper::GetVec3(const std::string& id, const Vec3& defaultVal) const
     {
         if (_element) {
             if (const auto child = _element->FirstChildElement(id.c_str())) {
@@ -124,7 +124,7 @@ namespace shen3
         return defaultVal;
     }
 
-    Vec3i XmlDataElementWrapper::GetIntVec3(const std::string& id, const Vec3i& defaultVal = {}) const
+    Vec3i XmlDataElementWrapper::GetIntVec3(const std::string& id, const Vec3i& defaultVal) const
     {
         if (_element) {
             if (const auto child = _element->FirstChildElement(id.c_str())) {
@@ -231,7 +231,7 @@ namespace shen3
         if (_element) {
             if (const auto child = _element->FirstChildElement(id.c_str())) {
                 auto wrapper = XmlDataElementWrapper{ child };
-                const int angle = GetVec3("angle");
+                const auto angle = GetVec3("angle");
                 const auto scale = wrapper.GetVec3("scale", { 1.f, 1.f, 1.f });
                 const auto position = wrapper.GetVec3("position");
 
@@ -326,10 +326,10 @@ namespace shen3
         if (_element) {
             if (auto child = _element->InsertNewChildElement(id.c_str())) {
                 auto wrapper = XmlDataElementWrapper{ child };
-                wrapper.SetFloat("x", val.left);
-                wrapper.SetFloat("y", val.top);
-                wrapper.SetFloat("w", val.width);
-                wrapper.SetFloat("h", val.height);
+                wrapper.SetFloat("x", val.x);
+                wrapper.SetFloat("y", val.y);
+                wrapper.SetFloat("w", val.w);
+                wrapper.SetFloat("h", val.h);
             }
         }
     }
@@ -339,10 +339,10 @@ namespace shen3
         if (_element) {
             if (auto child = _element->InsertNewChildElement(id.c_str())) {
                 auto wrapper = XmlDataElementWrapper{ child };
-                wrapper.SetInt("x", val.left);
-                wrapper.SetInt("y", val.top);
-                wrapper.SetInt("w", val.width);
-                wrapper.SetInt("h", val.height);
+                wrapper.SetInt("x", val.x);
+                wrapper.SetInt("y", val.y);
+                wrapper.SetInt("w", val.w);
+                wrapper.SetInt("h", val.h);
             }
         }
     }

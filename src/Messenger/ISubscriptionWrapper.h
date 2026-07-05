@@ -1,6 +1,6 @@
 #pragma once
 
-namespace shen
+namespace shen3
 {
     struct Event;
 

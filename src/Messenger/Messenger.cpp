@@ -1,7 +1,7 @@
 #include <Messenger/Messenger.h>
 #include <algorithm>
 
-namespace shen
+namespace shen3
 {
     void Messenger::RemoveSubscription(std::type_index typeIndex, const SubscriptionWeakPtr& ptr)
     {

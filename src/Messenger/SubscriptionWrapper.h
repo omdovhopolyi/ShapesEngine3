@@ -3,7 +3,7 @@
 #include <Messenger/ISubscriptionWrapper.h>
 #include <functional>
 
-namespace shen
+namespace shen3
 {
     template<class TEvent>
     class SubscriptionWrapper

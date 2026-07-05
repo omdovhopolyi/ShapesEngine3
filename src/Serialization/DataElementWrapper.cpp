@@ -169,7 +169,7 @@ namespace shen3
         Assert(false, "");
     }
 
-    void DataElementWrapper::SetColor(const std::string& id, const Vec4& val)
+    void DataElementWrapper::SetColor(const std::string& id, const Vec4ui8& val)
     {
         Assert(false, "");
     }

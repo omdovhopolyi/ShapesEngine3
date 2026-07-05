@@ -4,9 +4,15 @@ set(TARGET_NAME ShapesEngine3)
 
 project(${TARGET_NAME})
 
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 file (GLOB_RECURSE SRC_FILES 
     ${PROJECT_SOURCE_DIR}/src/*.h
     ${PROJECT_SOURCE_DIR}/src/*.cpp
+    ${PROJECT_SOURCE_DIR}/submodules/tinyxml2/tinyxml2.h
+    ${PROJECT_SOURCE_DIR}/submodules/tinyxml2/tinyxml2.cpp
 )
 
 add_executable(${TARGET_NAME} ${SRC_FILES})
@@ -36,8 +42,8 @@ target_link_libraries(${TARGET_NAME} glm)
 include_directories(src)
 include_directories(submodules/SDL/include)
 include_directories(submodules/glm)
-include_directories(submodules/spdlog/include)
 include_directories(submodules/tinyxml2)
+include_directories(submodules/spdlog/include)
 
 include_directories(external/glad/include)
 

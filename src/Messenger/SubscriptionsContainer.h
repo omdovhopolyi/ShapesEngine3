@@ -8,7 +8,7 @@
 #include <typeinfo>
 #include <typeindex>
 
-namespace shen
+namespace shen3
 {
     struct SubscriptionData
     {

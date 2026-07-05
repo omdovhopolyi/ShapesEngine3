@@ -46,7 +46,7 @@ namespace shen3
     template<class T, class Vec>
     bool Rect<T, Vec>::Contains(T pointX, T pointY) const
     {
-        return (pointX >= x && pointX <= x + w) && (pointY & >= y && pointY <= y + h);
+        return (pointX >= x && pointX <= x + w) && (pointY >= y && pointY <= y + h);
     }
 
     template<class T, class Vec>
@@ -62,7 +62,7 @@ namespace shen3
             (rectangle.x + rectangle.w >= x && rectangle.x <= x + w);
 
         const bool isIntersectY = (rectangle.y >= y && rectangle.y <= y + h) ||
-            (rectangle.y + rectangle.h >= y && rectangle.y <= y + );
+            (rectangle.y + rectangle.h >= y && rectangle.y <= y + h);
 
         return isIntersectX && isIntersectY;
     }

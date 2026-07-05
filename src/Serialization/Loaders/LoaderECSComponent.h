@@ -5,7 +5,7 @@
 
 namespace shen3
 {
-    template<class T>
+    /*template<class T>
     class LoaderECSComponent
         : public LoaderBase
     {
@@ -28,5 +28,5 @@ namespace shen3
 
             return nullptr;
         }
-    };
+    };*/
 }

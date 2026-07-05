@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 namespace shen3
 {

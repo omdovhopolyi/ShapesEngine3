@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace shen
+namespace shen3
 {
     using Vec3i = glm::ivec3;
     using Vec3 = glm::vec3;

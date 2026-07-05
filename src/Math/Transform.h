@@ -4,12 +4,12 @@
 #include <Math/Mat4.h>
 #include <Math/Quat.h>
 
-namespace shen
+namespace shen3
 {
     class Transform
     {
     public:
-        void Move(const Vec3& offset);
+        void Translate(const Vec3& offset);
         void SetPosition(const Vec3& position, bool updateTransform = false);
         const Vec3& GetPosition() const;
 

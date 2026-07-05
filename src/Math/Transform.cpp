@@ -1,9 +1,9 @@
 #include <Math/Transform.h>
 #include <glm/gtx/transform.hpp>
 
-namespace shen
+namespace shen3
 {
-    void Transform::Move(const Vec3& offset)
+    void Transform::Translate(const Vec3& offset)
     {
         _position += offset;
         _transform = glm::translate(_transform, offset);

@@ -3,8 +3,8 @@
 #include <Math/RectImpl.h>
 #include <Math/Vec.h>
 
-namespace shen
+namespace shen3
 {
-    using IntRect = Rect<int, Vec2i>;
-    using FloatRect = Rect<float, Vec2f>;
+    using RectI = Rect<int, Vec2i>;
+    using RectF = Rect<float, Vec2>;
 }

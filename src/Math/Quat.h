@@ -2,7 +2,7 @@
 
 #include <glm/gtx/quaternion.hpp>
 
-namespace shen
+namespace shen3
 {
     using Quat = glm::quat;
 }

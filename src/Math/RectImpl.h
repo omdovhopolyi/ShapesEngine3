@@ -2,7 +2,7 @@
 
 #include <Math/Vec.h>
 
-namespace shen
+namespace shen3
 {
     template<class T, class Vec>
     class Rect

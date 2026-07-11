@@ -50,15 +50,12 @@ namespace shen3
 	bool Engine::CreateManagers()
 	{
 		const bool loaded = _managersLoader.Load();
-		if (loaded)
-		{
+		if (loaded) {
 			_managers = std::make_unique<ManagersController>();
-
 			for (const auto& systemType : _managersLoader.GetManagersList()){
 				_managers->AddManager(ManagersFactory::Instance().Get(systemType));
 			}
 		}
-
 		return loaded;
 	}
 

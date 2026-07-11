@@ -1,5 +1,5 @@
 #include <Managers/ManagersListLoader.h>
-#include <Serialization/WrapperTypes/XmlDataElementWrapper.h>
+#include <Serialization/DataElementWrapperFactory.h>
 #include <Common/Assert.h>
 #include <Common/FilePath.h>
 
@@ -9,9 +9,8 @@ namespace shen3
     {
         _managersList.clear();
 
-        auto elementWrapper = XmlDataElementWrapper{ nullptr };
-        elementWrapper.LoadFile(FilePath::Path("assets/configs/managers.xml"));
-        elementWrapper.ForAllChildren("manager", [&](const DataElementWrapper& element) {
+        auto elementWrapper = DataElementWrapperFactory::Get(FilePath::Path("assets/configs/managers.xml"));
+        elementWrapper->ForAllChildren("manager", [&](const DataElementWrapper& element) {
             const auto managerType = element.GetStr("type");
             _managersList.push_back(managerType);
         });

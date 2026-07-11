@@ -14,7 +14,7 @@
 #define REGISTER_MANAGERS_FACTORY(Type) \
     bool Type::RegisterFactory() \
     { \
-        shen::ManagersFactory::Instance().RegisterManagersFactory(#Type, [](){ return std::make_unique<Type>(); }); \
+        shen3::ManagersFactory::Instance().RegisterManagersFactory(#Type, [](){ return std::make_unique<Type>(); }); \
         return true; \
     } \
     bool Type::registered = Type::RegisterFactory();

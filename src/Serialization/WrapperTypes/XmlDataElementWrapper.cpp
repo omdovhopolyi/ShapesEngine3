@@ -3,6 +3,8 @@
 
 namespace shen3
 {
+    XmlDataElementWrapper::XmlDataElementWrapper() = default;
+
     XmlDataElementWrapper::XmlDataElementWrapper(tinyxml2::XMLElement* element)
         : _element(element)
     { }
@@ -389,7 +391,7 @@ namespace shen3
         }
     }
 
-    void XmlDataElementWrapper::SetTransform(const std::string& id, const Transform& transform)
+    void XmlDataElementWrapper::SetTransform(const std::string&, const Transform&)
     {
         if (_element) {
             //

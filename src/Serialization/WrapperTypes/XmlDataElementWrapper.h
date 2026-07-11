@@ -11,6 +11,7 @@ namespace shen3
         : public DataElementWrapper
     {
     public:
+        XmlDataElementWrapper();
         XmlDataElementWrapper(tinyxml2::XMLElement* element);
 
         void LoadFile(const std::string& filename) override;

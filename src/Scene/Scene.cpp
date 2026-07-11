@@ -2,11 +2,11 @@
 
 namespace shen3
 {
-    void Scene::Update()
+    void Scene::Update(float dt)
     {
         for (auto& sceneObject : _sceneObjects) {
             if (sceneObject) {
-                sceneObject->Update();
+                sceneObject->Update(dt);
             }
         }
     }

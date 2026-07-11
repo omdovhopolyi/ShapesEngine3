@@ -8,7 +8,7 @@ namespace shen3
     {
         for (auto& scene : _scenes) {
             if (scene) {
-                scene->Update();
+                scene->Update(0.f); // TODO dt
             }
         }
     }

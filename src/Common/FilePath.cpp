@@ -7,8 +7,9 @@ namespace shen3
     {
 #ifdef _DEBUG
         return std::format("../{}", path);
-#endif
+#else
         return path;
+#endif
     }
 
     std::string FilePath::Path(const std::string& path)

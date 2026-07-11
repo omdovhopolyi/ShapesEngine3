@@ -23,6 +23,12 @@ foreach(source IN LISTS SRC_FILES)
     source_group("${source_path}" FILES "${source}")
 endforeach()
 
+if(MSVC)
+    target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
+else()
+    target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+endif()
+
 target_compile_features(${TARGET_NAME} PUBLIC cxx_std_20)
 
 set(SDL_TESTS OFF CACHE BOOL "" FORCE)

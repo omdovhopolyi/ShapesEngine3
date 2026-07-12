@@ -1,4 +1,5 @@
 <?xml version = "1.0"?>
 <managers>
     <manager type="ScenesManager"/>
+    <manager type="RenderQueue"/>
 </managers>

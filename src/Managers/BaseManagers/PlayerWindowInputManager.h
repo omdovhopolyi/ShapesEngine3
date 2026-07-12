@@ -14,12 +14,12 @@ namespace shen3
         //bool IsKeyPressed(sf::Keyboard::Key key) const;
         //bool IsMouseButtonPressed(sf::Mouse::Button button) const;
 
-        virtual std::string GetCharByKey([[maybe_unused]] int key) const { return {}; }
-        virtual int GetKeyByChar([[maybe_unused]] const std::string& charKeyStr, [[maybe_unused]] bool silent = false) const { return -1; }
+        virtual std::string GetCharByKey(int key) const { return {}; }
+        virtual int GetKeyByChar(const std::string& charKeyStr, bool silent = false) const { return -1; }
 
     protected:
         virtual void GenerateCharKeyMap() {}
-        virtual void GenerateKeyCharMap() {}
+        virtual void GenerateKeyCharMap();
 
     protected:
         std::unordered_map<std::string, uint32_t> _charKeyMap;

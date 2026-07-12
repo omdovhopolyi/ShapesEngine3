@@ -7,4 +7,12 @@ namespace shen3
         GenerateCharKeyMap();
         GenerateKeyCharMap();
     }
+
+    void PlayerWindowInputManager::GenerateKeyCharMap()
+    {
+        _keyCharMap.clear();
+        for (const auto& [str, key] : _charKeyMap) {
+            _keyCharMap[key] = str;
+        }
+    }
 }

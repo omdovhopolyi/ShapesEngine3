@@ -95,6 +95,22 @@ namespace shen3
         _registrationOrderedManagers.clear();
     }
 
+    float ManagersController::GetDt() const
+    {
+        if (_timeManager) {
+            return _timeManager->Dt();
+        }
+        return 0.f;
+    }
+
+    float ManagersController::GetGameDt() const
+    {
+        if (_timeManager) {
+            return _timeManager->GameDt();
+        }
+        return 0.f;
+    }
+
     void ManagersController::InitSubscriptions()
     {
         _subscriptions.Reset();

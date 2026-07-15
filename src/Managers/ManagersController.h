@@ -40,6 +40,8 @@ namespace shen3
         void Stop();
         void Clear();
 
+        float GetDt() const;
+        float GetGameDt() const;
         TimeManager& GetTime() { return *_timeManager; }
         const PlayerWindowInputManager* GetInput() { return _playerInputManager; }
 

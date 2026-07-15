@@ -1,4 +1,5 @@
 #include <Scene/ScenesManager.h>
+#include <Managers/ManagersController.h>
 
 namespace shen3
 {
@@ -6,9 +7,11 @@ namespace shen3
 
     void ScenesManager::Update()
     {
+        float dt = GetManagers()->GetGameDt();
+
         for (auto& scene : _scenes) {
             if (scene) {
-                scene->Update(0.f); // TODO dt
+                scene->Update(dt);
             }
         }
     }

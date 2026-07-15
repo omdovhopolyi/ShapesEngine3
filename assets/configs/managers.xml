@@ -1,5 +1,6 @@
 <?xml version = "1.0"?>
 <managers>
+    <manager type="TimeManager"/>
     <manager type="SDLMainWindow"/>
     <manager type="SDLInputManager"/>
     <manager type="OpenGLShadersManager"/>

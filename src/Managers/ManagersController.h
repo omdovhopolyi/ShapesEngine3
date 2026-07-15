@@ -40,7 +40,7 @@ namespace shen3
         void Stop();
         void Clear();
 
-        //TimeSystem& GetTime() { return *_timeManager; }
+        TimeManager& GetTime() { return *_timeManager; }
         const PlayerWindowInputManager* GetInput() { return _playerInputManager; }
 
     private:
@@ -54,7 +54,7 @@ namespace shen3
         std::vector<std::unique_ptr<RenderManager>> _renderManagers;
         std::map<std::type_index, Manager*> _mappedManagers;
         std::vector<Manager*> _registrationOrderedManagers;
-        //TimeManager* _timeManager = nullptr;
+        TimeManager* _timeManager = nullptr;
         PlayerWindowInputManager* _playerInputManager = nullptr;
         Engine* _engine = nullptr;
 

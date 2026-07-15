@@ -3,6 +3,7 @@
 #include <Managers/BaseManagers/UpdateManager.h>
 #include <Managers/BaseManagers/PlayerWindowInputManager.h>
 #include <Messenger/Events/Common.h>
+#include <Time/TimeManager.h>
 
 namespace shen3
 {
@@ -19,9 +20,9 @@ namespace shen3
         _mappedManagers[manager->GetTypeIndex()] = manager.get();
         _registrationOrderedManagers.push_back(manager.get());
 
-        /*if (auto timeManager = dynamic_cast<TimeManager*>(manager.get())) {
+        if (auto timeManager = dynamic_cast<TimeManager*>(manager.get())) {
             _timeManager = timeManager;
-        }*/
+        }
 
         if (auto playerInputManager = dynamic_cast<PlayerWindowInputManager*>(manager.get())) {
             _playerInputManager = playerInputManager;

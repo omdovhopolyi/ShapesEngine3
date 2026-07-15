@@ -87,37 +87,8 @@ namespace shen3
         }
 
         ClearShader(vertexShaderId, fragmentShaderId);
-        AddShader(id, std::make_unique<ShaderProgram>(shaderId));
+        AddShader(id, CreateShaderProgram(shaderId));
 
         return true;
-    }
-
-    unsigned int ShadersManager::CreateShaderVertex()
-    {
-        Assert(false, "[ShadersManager::CreateShaderVertex] Not implemented");
-        return 0;
-    }
-
-    unsigned int ShadersManager::CreateShaderFragment()
-    {
-        Assert(false, "[ShadersManager::CreateShaderFragment] Not implemented");
-        return 0;
-    }
-
-    unsigned int ShadersManager::LoadShaderFromSource(unsigned int shaderId, const std::string& source)
-    {
-        Assert(false, "[ShadersManager::LoadShaderFromSource] Not implemented");
-        return 0;
-    }
-
-    unsigned int ShadersManager::CompileShader(unsigned int vertexShaderId, unsigned int fragmentShaderId)
-    {
-        Assert(false, "[ShadersManager::CompileShader] Not implemented");
-        return 0;
-    }
-
-    void ShadersManager::ClearShader(unsigned int vertexShaderId, unsigned int fragmentShaderId)
-    {
-        Assert(false, "[ShadersManager::ClearShader] Not implemented");
     }
 }

@@ -1,18 +1,21 @@
 #pragma once
 
+#include <Graphics/ShaderProgram.h>
+
 namespace shen3
 {
-    class OpenGLShaderProgram
+    class OpenGLShaderProgram final
+        : public ShaderProgram
     {
-    /*public:
-        GLSLShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
-        ~GLSLShaderProgram();
-        void Use() const;
-        void SetUniform(const std::string& name, float value) const;
-        void SetUniform(const std::string& name, int value) const;
-        void SetUniform(const std::string& name, const glm::vec3& value) const;
-        void SetUniform(const std::string& name, const glm::mat4& value) const;
-    private:
-        unsigned int _programID;*/
+    public:
+        OpenGLShaderProgram(unsigned int id);
+
+        int GetUniformLocation(const std::string& name) override;
+
+        void SetUniform(const std::string& name, float value) override;
+        void SetUniform(const std::string& name, const Vec2& value) override;
+        void SetUniform(const std::string& name, const Mat4& value) override;
+
+        void Use() const override;
     };
 }

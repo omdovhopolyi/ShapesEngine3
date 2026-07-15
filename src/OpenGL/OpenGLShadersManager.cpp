@@ -1,4 +1,5 @@
 #include <OpenGL/OpenGLShadersManager.h>
+#include <OpenGL/OpenGLShaderProgram.h>
 #include <Logger/Logger.h>
 
 #include <glad/gl.h>
@@ -8,6 +9,11 @@
 namespace shen3
 {
     REGISTER_MANAGERS_FACTORY(OpenGLShadersManager)
+
+    std::unique_ptr<ShaderProgram> OpenGLShadersManager::CreateShaderProgram(unsigned int shaderId)
+    {
+        return std::make_unique<OpenGLShaderProgram>(shaderId);
+    }
 
     unsigned int OpenGLShadersManager::CreateShaderVertex()
     {

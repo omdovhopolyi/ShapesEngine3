@@ -23,11 +23,13 @@ namespace shen3
         bool LoadShadersSource(const std::string& vertexShaderPath, const std::string& fragmentShaderPath,
             std::string& vertexShaderSource, std::string& fragmentShaderSource);
 
-        virtual unsigned int CreateShaderVertex();
-        virtual unsigned int CreateShaderFragment();
-        virtual unsigned int LoadShaderFromSource(unsigned int shaderId, const std::string& source);
-        virtual unsigned int CompileShader(unsigned int vertexShaderId, unsigned int fragmentShaderId);
-        virtual void ClearShader(unsigned int vertexShaderId, unsigned int fragmentShaderId);
+        virtual std::unique_ptr<ShaderProgram> CreateShaderProgram(unsigned int shaderId) = 0;
+
+        virtual unsigned int CreateShaderVertex() = 0;
+        virtual unsigned int CreateShaderFragment() = 0;
+        virtual unsigned int LoadShaderFromSource(unsigned int shaderId, const std::string& source) = 0;
+        virtual unsigned int CompileShader(unsigned int vertexShaderId, unsigned int fragmentShaderId) = 0;
+        virtual void ClearShader(unsigned int vertexShaderId, unsigned int fragmentShaderId) = 0;
 
     private:
         std::unordered_map<std::string, std::unique_ptr<ShaderProgram>> _shaders;

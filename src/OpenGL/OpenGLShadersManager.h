@@ -11,6 +11,8 @@ namespace shen3
         MANAGERS_FACTORY(OpenGLShadersManager)
 
     protected:
+        std::unique_ptr<ShaderProgram> CreateShaderProgram(unsigned int shaderId) override;
+
         unsigned int CreateShaderVertex() override;
         unsigned int CreateShaderFragment() override;
         unsigned int LoadShaderFromSource(unsigned int shaderId, const std::string& source) override;

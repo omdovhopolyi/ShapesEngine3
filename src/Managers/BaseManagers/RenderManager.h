@@ -8,6 +8,8 @@ namespace shen3
         : public Manager
     {
     public:
+        virtual void BeginFrame() {}
         virtual void Draw() {}
+        virtual void EndFrame() {}
     };
 }

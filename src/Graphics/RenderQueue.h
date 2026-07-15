@@ -1,25 +1,25 @@
 #pragma once
 
-#include <Managers/BaseManagers/UpdateManager.h>
+#include <Managers/BaseManagers/RenderManager.h>
 #include <Managers/ManagersFactoryRegistration.h>
 #include <Graphics/RenderCommand.h>
 
 namespace shen3
 {
     class RenderQueue
-        : public UpdateManager
+        : public RenderManager
     {
         MANAGERS_FACTORY(RenderQueue)
 
     public:
-        void Update() override;
+        void Draw() override;
 
         void AddCommand(RenderCommand& command);
         void ProcessCommands();
         void ClearCommands();
         void Sort();
 
-    private:
+    protected:
         std::vector<RenderCommand> _commands;
     };
 }

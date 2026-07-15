@@ -87,7 +87,7 @@ namespace shen3
 
     void ManagersController::Clear()
     {
-        Logger::Log("SystemsManager::Clear");
+        Logger::Log("[ManagersController::Clear]");
         _updateManagers.clear();
         _renderManagers.clear();
         _mappedManagers.clear();

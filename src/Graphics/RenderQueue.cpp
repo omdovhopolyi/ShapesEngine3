@@ -4,11 +4,13 @@ namespace shen3
 {
     REGISTER_MANAGERS_FACTORY(RenderQueue)
 
-    void RenderQueue::Update()
+    void RenderQueue::Draw()
     {
+        BeginFrame();
         Sort();
         ProcessCommands();
         ClearCommands();
+        EndFrame();
     }
 
     void RenderQueue::AddCommand(RenderCommand& command)

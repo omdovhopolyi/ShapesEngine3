@@ -25,7 +25,7 @@ namespace shen3
         virtual std::type_index GetTypeIndex() { return std::type_index(typeid(Manager)); }
         virtual std::string GetTypeName() { return {}; }
 
-        ManagersController* GetSystems() const { return _managersController; }
+        ManagersController* GetManagers() const { return _managersController; }
 
     protected:
         ManagersController* _managersController = nullptr;

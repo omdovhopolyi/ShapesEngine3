@@ -1,5 +1,7 @@
 <?xml version = "1.0"?>
 <managers>
+    <manager type="SDLMainWindow"/>
+    <manager type="ShadersManager"/>
     <manager type="SDLInputManager"/>
     <manager type="ScenesManager"/>
     <manager type="RenderQueue"/>

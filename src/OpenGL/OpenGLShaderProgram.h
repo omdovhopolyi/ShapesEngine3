@@ -2,7 +2,7 @@
 
 namespace shen3
 {
-    class GLSLShaderProgram
+    class OpenGLShaderProgram
     {
     /*public:
         GLSLShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);

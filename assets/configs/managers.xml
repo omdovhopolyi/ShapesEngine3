@@ -5,5 +5,5 @@
     <manager type="SDLInputManager"/>
     <manager type="OpenGLShadersManager"/>
     <manager type="ScenesManager"/>
-    <manager type="RenderQueue"/>
+    <manager type="OpenGLRenderQueue"/>
 </managers>

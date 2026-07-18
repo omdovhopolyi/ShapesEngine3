@@ -21,7 +21,15 @@ namespace shen3
             }
         }
 
-        if (IsActive()) {
+        if (GetState() == SceneObjectState::Instantiated) {
+            for (auto& component : _components) {
+                component->OnStarted();
+            }
+
+            SetState(SceneObjectState::Alive);
+        }
+
+        if (IsActive() && GetState() == SceneObjectState::Alive) {
             for (auto& component : _components) {
                 component->Update(dt);
             }
@@ -138,6 +146,16 @@ namespace shen3
     void SceneObject::SetState(SceneObjectState state)
     {
         _state = state;
+    }
+
+    void SceneObject::SetScene(Scene* scene)
+    {
+        _scene = scene;
+    }
+
+    Scene* SceneObject::GetScene() const
+    {
+        return _scene;
     }
 
     bool SceneObject::IsActive() const

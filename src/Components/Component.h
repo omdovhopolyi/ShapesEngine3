@@ -1,15 +1,17 @@
 #pragma once
 
 #include <string>
+#include <Serialization/Serializable.h>
 
 namespace shen3
 {
     class SceneObject;
 
     class Component
+        : public Serializable
     {
     public:
-        virtual void OnInstantiate() {}
+        virtual void OnInstantiated() {}
         virtual void OnStarted() {}
         virtual void OnActivated() {}
         virtual void Update(float dt);

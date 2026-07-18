@@ -2,7 +2,9 @@
 
 namespace shen3
 {
-    void TestComponent::OnActivated()
+    REGISTER_LOADER(TestComponent);
+
+    void TestComponent::OnStarted()
     {
 
     }

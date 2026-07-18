@@ -13,6 +13,8 @@
 
 namespace shen3
 {
+    class Scene;
+
     class SceneObject
     {
     public:
@@ -45,6 +47,9 @@ namespace shen3
         SceneObjectState GetState() const;
         void SetState(SceneObjectState state);
 
+        void SetScene(Scene* scene);
+        Scene* GetScene() const;
+
         bool IsActive() const;
         void SetActive(bool active);
 
@@ -67,6 +72,9 @@ namespace shen3
         T* AddComponent(const std::string& name);
 
         template<class T>
+        bool RemoveComponent();
+
+        template<class T>
         bool HasComponent() const;
 
         Component* GetComponent(const std::string& name) const;
@@ -82,6 +90,7 @@ namespace shen3
         bool _isVisible = true;
         Transform _transform;
         SceneObject* _parent = nullptr;
+        Scene* _scene = nullptr;
         std::vector<std::unique_ptr<SceneObject>> _children;
         std::vector<std::unique_ptr<Component>> _components;
         std::map<std::type_index, Component*> _mappedComponents;
@@ -92,7 +101,7 @@ namespace shen3
     {
         auto index = std::type_index(typeid(T));
         if (auto it = _mappedComponents.find(index); it != _mappedComponents.end()) {
-            it->second;
+            return it->second;
         }
         return nullptr;
     }
@@ -105,7 +114,7 @@ namespace shen3
             return it->second->GetName() == name;
         });
         if (foundIt != _mappedComponents.end()) {
-            foundIt->second;
+            return foundIt->second;
         }
         return nullptr;
     }
@@ -141,6 +150,22 @@ namespace shen3
         _components.push_back(std::move(compPtr));
         _mappedComponents[std::type_index(typeid(T))] = comp;
         return comp;
+    }
+
+    template<class T>
+    bool SceneObject::RemoveComponent()
+    {
+        auto index = std::type_index(typeid(T));
+        auto it = _mappedComponents.find(index);
+        if (it != _mappedComponents.end()) {
+            auto comp = it->second;
+            _components.erase(std::remove_if(_components.begin(), _components.end(), [comp](const auto& c) {
+                return c.get() == comp;
+            }));
+            _mappedComponents.erase(it);
+            return true;
+        }
+        return false;
     }
 
     template<class T>

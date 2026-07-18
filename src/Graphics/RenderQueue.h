@@ -9,15 +9,16 @@ namespace shen3
     class RenderQueue
         : public RenderManager
     {
-        MANAGERS_FACTORY(RenderQueue)
-
     public:
         void Draw() override;
 
-        void AddCommand(RenderCommand& command);
+        void AddCommand(const RenderCommand& command);
         void ProcessCommands();
         void ClearCommands();
         void Sort();
+
+    protected:
+        virtual void ProcessCommand(const RenderCommand& command) = 0;
 
     protected:
         std::vector<RenderCommand> _commands;

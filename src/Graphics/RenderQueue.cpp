@@ -2,8 +2,6 @@
 
 namespace shen3
 {
-    REGISTER_MANAGERS_FACTORY(RenderQueue)
-
     void RenderQueue::Draw()
     {
         BeginFrame();
@@ -13,15 +11,15 @@ namespace shen3
         EndFrame();
     }
 
-    void RenderQueue::AddCommand(RenderCommand& command)
+    void RenderQueue::AddCommand(const RenderCommand& command)
     {
         _commands.push_back(std::move(command));
     }
 
     void RenderQueue::ProcessCommands()
     {
-        for (auto& command : _commands) {
-            command.Draw();
+        for (const auto& command : _commands) {
+            ProcessCommand(command);
         }
     }
 

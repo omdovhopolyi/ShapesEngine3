@@ -1,19 +1,19 @@
 #pragma once
 
 #include <Graphics/Mesh.h>
-#include <Graphics/ShaderProgram.h>
+#include <Graphics/Material.h>
 #include <Math/Transform.h>
 
 namespace shen3
 {
-    class RenderCommand
+    struct RenderCommand
     {
     public:
-        void Draw();
+        //void Draw();
 
-    protected:
-        Mesh* _mesh = nullptr;
-        ShaderProgram* _shader = nullptr;
-        Transform _transform;
+    //protected:
+        Mesh* mesh = nullptr;
+        Material* material = nullptr;
+        Transform transform;
     };
 }

@@ -12,10 +12,16 @@ namespace shen3
     public:
         void Update(float dt);
 
-        /*void AddSceneObject(const std::shared_ptr<SceneObject>& sceneObject);
-        void RemoveSceneObject();*/
+        void AddSceneObject(std::unique_ptr<SceneObject> sceneObject);
+        void RemoveSceneObject();
+
+        SceneObject* CreateSceneObject(SceneObject* parent, const std::string& name = "node");
+
+    private:
+        void DestroySceneObjects();
 
     private:
         std::vector<std::unique_ptr<SceneObject>> _sceneObjects;
+        std::vector<std::weak_ptr<SceneObject>> _toDestroy;
     };
 }

@@ -30,6 +30,11 @@ namespace shen3
 
     }
 
+    void SDLMainWindow::SwapBuffers()
+    {
+        SDL_GL_SwapWindow(SDL_GL_GetCurrentWindow());
+    }
+
     void SDLMainWindow::CreateMainWindow()
     {
         SDL_Init(SDL_INIT_VIDEO);

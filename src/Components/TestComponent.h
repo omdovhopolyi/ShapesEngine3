@@ -7,8 +7,10 @@ namespace shen3
     class TestComponent
         : public Component
     {
+        SERIALIZABLE(TestComponent)
+
     public:
-        void OnActivated() override;
+        void OnStarted() override;
         void Update(float dt) override;
 
     private:

@@ -15,6 +15,8 @@ namespace shen3
         void Update() override;
         void Stop() override;
 
+        void SwapBuffers();
+
     private:
         void CreateMainWindow();
     };

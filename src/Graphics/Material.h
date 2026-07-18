@@ -22,6 +22,7 @@ namespace shen3
 
     private:
         ShaderProgram* _shader = nullptr;
+
         std::unordered_map<std::string, float> _floatUniforms;
         std::unordered_map<std::string, Vec2> _float2Uniforms;
         std::unordered_map<std::string, Mat4> _mat4Uniforms;

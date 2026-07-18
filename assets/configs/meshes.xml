@@ -1,0 +1,4 @@
+<?xml version = "1.0"?>
+<meshes>
+    <mesh id="square" file="assets/meshes/square.obj"/>
+</meshes>

@@ -8,6 +8,6 @@ namespace shen3
         Undefined,
         Instantiated,
         Alive,
-        Destroing
+        Destroying
     )
 }

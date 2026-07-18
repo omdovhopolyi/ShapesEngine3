@@ -2,8 +2,8 @@
 
 namespace shen3
 {
-    void RenderCommand::Draw()
+    /*void RenderCommand::Draw()
     {
 
-    }
+    }*/
 }

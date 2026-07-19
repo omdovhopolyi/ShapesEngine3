@@ -1,0 +1,4 @@
+<?xml version = "1.0"?>
+<materials>
+    <material id="default" file="assets/materials/default.xml"/>
+</materials>

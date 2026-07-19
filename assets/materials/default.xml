@@ -1,0 +1,7 @@
+<?xml version = "1.0"?>
+<material shader="default">
+    <float id="float_param" value="1.5"/>
+    <vec2 id="vec_2_param">
+        <value x="3" y="5"/>
+    </vec2>
+</material>

@@ -2,8 +2,10 @@
 <managers>
     <manager type="TimeManager"/>
     <manager type="SDLMainWindow"/>
-    <manager type="SDLInputManager"/>
     <manager type="OpenGLShadersManager"/>
+    <manager type="MaterialsManager"/>
+    <manager type="OpenGLMeshesManager"/>
+    <manager type="SDLInputManager"/>
     <manager type="ScenesManager"/>
     <manager type="OpenGLRenderQueue"/>
 </managers>

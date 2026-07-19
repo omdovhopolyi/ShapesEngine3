@@ -2,12 +2,16 @@
 
 namespace shen3
 {
-    Mesh::Mesh(unsigned int vbo, unsigned int ebo, unsigned int vao, MeshData&& meshData)
-        : _vbo(vbo)
-        , _ebo(ebo)
-        , _vao(vao)
-        , _meshData(std::move(meshData))
+    Mesh::Mesh(MeshData&& meshData)
+        : _meshData(std::move(meshData))
     {}
+
+    void Mesh::InitBuffers(unsigned int vbo, unsigned int ebo, unsigned int vao)
+    {
+        _vbo = vbo;
+        _ebo = ebo;
+        _vao = vao;
+    }
 
     void Mesh::Bind() const
     {

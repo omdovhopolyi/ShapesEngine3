@@ -8,7 +8,7 @@ namespace shen3
     class OpenGLShadersManager
         : public ShadersManager
     {
-        MANAGERS_FACTORY(OpenGLShadersManager)
+        MANAGERS_FACTORY(ShadersManager)
 
     protected:
         std::unique_ptr<ShaderProgram> CreateShaderProgram(unsigned int shaderId) override;

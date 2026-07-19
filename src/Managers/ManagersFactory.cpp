@@ -15,8 +15,7 @@ namespace shen3
 
     std::unique_ptr<Manager> ManagersFactory::Get(const std::string& id)
     {
-        if (auto it = _factories.find(id); it != _factories.end())
-        {
+        if (auto it = _factories.find(id); it != _factories.end()) {
             return it->second();
         }
 

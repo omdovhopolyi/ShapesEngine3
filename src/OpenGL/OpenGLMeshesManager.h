@@ -10,6 +10,6 @@ namespace shen3
         MANAGERS_FACTORY(OpenGLMeshesManager)
 
     protected:
-        void LoadMesh(const std::string& id, const std::string& filename) override;
+        void InitMeshes() override;
     };
 }

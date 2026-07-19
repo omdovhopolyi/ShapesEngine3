@@ -7,7 +7,9 @@ namespace shen3
     class Mesh
     {
     public:
-        Mesh(unsigned int vbo, unsigned int ebo, unsigned int vao, MeshData&& meshData);
+        Mesh(MeshData&& meshData);
+
+        void InitBuffers(unsigned int vbo, unsigned int ebo, unsigned int vao);
 
         void Bind() const;
         void Draw() const;

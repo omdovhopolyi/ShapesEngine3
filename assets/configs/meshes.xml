@@ -1,4 +1,5 @@
 <?xml version = "1.0"?>
 <meshes>
     <mesh id="square" file="assets/meshes/square.obj"/>
+    <mesh id="square_2" file="assets/meshes/square.obj"/>
 </meshes>

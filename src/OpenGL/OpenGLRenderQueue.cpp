@@ -26,11 +26,5 @@ namespace shen3
         command.material->Use();
         command.mesh->Bind();
         command.mesh->Draw();
-
-        /*glUseProgram(_shaderProgram);
-        glBindVertexArray(_vao);
-        glUniform4f(_uColor, 0.f, 1.f, 0.f, 1.f);
-        glUniform2f(_uOffset, _offset.x, _offset.y);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
     }
 }

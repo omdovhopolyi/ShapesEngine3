@@ -8,11 +8,12 @@ namespace shen3
     {
     public:
         Mesh(MeshData&& meshData);
+        virtual ~Mesh() = default;
 
         void InitBuffers(unsigned int vbo, unsigned int ebo, unsigned int vao);
 
-        void Bind() const;
-        void Draw() const;
+        virtual void Bind() const = 0;
+        virtual void Draw() const = 0;
 
         unsigned int GetVAO() const;
         unsigned int GetVBO() const;
@@ -20,8 +21,9 @@ namespace shen3
 
         MeshData& GetMeshData();
 
-    private:
+    protected:
         MeshData _meshData;
+        int _indicesCount = 0;
 
         unsigned int _vbo = 0;
         unsigned int _ebo = 0;

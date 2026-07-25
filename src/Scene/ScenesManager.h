@@ -14,6 +14,7 @@ namespace shen3
         MANAGERS_FACTORY(ScenesManager)
 
     public:
+        void Start() override;
         void Update() override;
 
     private:

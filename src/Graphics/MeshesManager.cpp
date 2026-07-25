@@ -99,7 +99,6 @@ namespace shen3
 
         file.close();
 
-        auto mesh = std::make_unique<Mesh>(std::move(meshData));
-        AddMesh(id, std::move(mesh));
+        AddMesh(id, CreateMesh(std::move(meshData)));
     }
 }

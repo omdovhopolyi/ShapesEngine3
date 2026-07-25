@@ -17,6 +17,7 @@ namespace shen3
     protected:
         virtual void LoadMesh(const std::string& id, const std::string& filename);
         virtual void InitMeshes() = 0;
+        virtual std::unique_ptr<Mesh> CreateMesh(MeshData&& meshData) = 0;
 
     protected:
         std::unordered_map<std::string, std::unique_ptr<Mesh>> _meshes;

@@ -4,6 +4,7 @@ namespace shen3
 {
     Mesh::Mesh(MeshData&& meshData)
         : _meshData(std::move(meshData))
+        , _indicesCount(static_cast<int>(_meshData.indices.size()))
     {}
 
     void Mesh::InitBuffers(unsigned int vbo, unsigned int ebo, unsigned int vao)
@@ -11,16 +12,6 @@ namespace shen3
         _vbo = vbo;
         _ebo = ebo;
         _vao = vao;
-    }
-
-    void Mesh::Bind() const
-    {
-        // Implementation for binding the mesh
-    }
-
-    void Mesh::Draw() const
-    {
-        // Implementation for drawing the mesh
     }
 
     unsigned int Mesh::GetVAO() const

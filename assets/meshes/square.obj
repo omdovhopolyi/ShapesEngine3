@@ -1,9 +1,9 @@
 # Simple square
 # Vertices
-v -1.0 -1.0 0.0
-v  1.0 -1.0 0.0
-v  1.0  1.0 0.0
-v -1.0  1.0 0.0
+v -0.5 -0.5 0.0
+v  0.5 -0.5 0.0
+v  0.5  0.5 0.0
+v -0.5  0.5 0.0
 
 # Texture coordinates
 vt 0.0 0.0

@@ -4,12 +4,13 @@
 
 namespace shen3
 {
-    class OpenGLMeshesManager
+    class OpenGLMeshesManager final
         : public MeshesManager
     {
-        MANAGERS_FACTORY(OpenGLMeshesManager)
+        MANAGERS_FACTORY(MeshesManager)
 
     protected:
         void InitMeshes() override;
+        std::unique_ptr<Mesh> CreateMesh(MeshData&& meshData) override;
     };
 }

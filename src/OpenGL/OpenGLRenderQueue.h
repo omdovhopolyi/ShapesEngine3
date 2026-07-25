@@ -7,7 +7,7 @@ namespace shen3
     class OpenGLRenderQueue
         : public RenderQueue
     {
-        MANAGERS_FACTORY(OpenGLRenderQueue)
+        MANAGERS_FACTORY(RenderQueue)
 
     public:
         void BeginFrame() override;

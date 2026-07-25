@@ -27,7 +27,7 @@ namespace shen3
         else {
             _sceneObjects.push_back(std::move(sceneObjectPtr));
         }
-        
+        sceneObject->SetState(SceneObjectState::Instantiated);
         return sceneObject;
     }
 

@@ -1,4 +1,5 @@
 #include <OpenGL/OpenGLMeshesManager.h>
+#include <OpenGL/OpenGLMesh.h>
 #include <Logger/Logger.h>
 #include <Math/Math.h>
 #include <Common/Assert.h>
@@ -23,6 +24,9 @@ namespace shen3
                 unsigned int ebo;
                 unsigned int vao;
 
+                glGenVertexArrays(1, &vao);
+                glBindVertexArray(vao);
+
                 glGenBuffers(1, &vbo);
                 glBindBuffer(GL_ARRAY_BUFFER, vbo);
                 glBufferData(GL_ARRAY_BUFFER, meshData.vertices.size() * sizeof(Vec3), meshData.vertices.data(), GL_STATIC_DRAW);
@@ -33,16 +37,21 @@ namespace shen3
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.indices.size() * sizeof(unsigned int), meshData.indices.data(), GL_STATIC_DRAW);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-                glGenVertexArrays(1, &vao);
-                glBindVertexArray(vao);
                 glBindBuffer(GL_ARRAY_BUFFER, vbo);
-                glEnableVertexAttribArray(0);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
-                glBindBuffer(GL_ARRAY_BUFFER, 0);
+                glEnableVertexAttribArray(0);
                 glBindVertexArray(0);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
 
                 mesh->InitBuffers(vbo, ebo, vao);
             }
         }
+    }
+
+    std::unique_ptr<Mesh> OpenGLMeshesManager::CreateMesh(MeshData&& meshData)
+    {
+        return std::make_unique<OpenGLMesh>(std::move(meshData));
     }
 }

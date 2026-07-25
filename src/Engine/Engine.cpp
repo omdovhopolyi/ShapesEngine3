@@ -2,6 +2,7 @@
 
 #include <Managers/ManagersController.h>
 #include <Managers/ManagersFactory.h>
+#include <Managers/ManagersFacade.h>
 #include <Logger/Logger.h>
 #include <Messenger/Events/Common.h>
 
@@ -54,6 +55,7 @@ namespace shen3
 			_managers = std::make_unique<ManagersController>();
 			for (const auto& managerType : _managersLoader.GetManagersList()){
 				_managers->AddManager(ManagersFactory::Instance().Get(managerType));
+                ManagersFacade::Instance().Init(_managers.get());
 			}
 		}
 		return loaded;

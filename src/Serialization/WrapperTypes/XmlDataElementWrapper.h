@@ -28,6 +28,8 @@ namespace shen3
         Vec2i GetIntVec2(const std::string& id, const Vec2i& defaultVal = {}) const override;
         Vec3 GetVec3(const std::string& id, const Vec3& defaultVal = {}) const override;
         Vec3i GetIntVec3(const std::string& id, const Vec3i& defaultVal = {}) const override;
+        Vec4 GetVec4(const std::string& id, const Vec4& defaultVal = {}) const override;
+        Vec4i GetIntVec4(const std::string& id, const Vec4i& defaultVal = {}) const override;
         RectF GetFloatRect(const std::string& id, const RectF& defaultVal = {}) const override;
         RectI GetIntRect(const std::string& id, const RectI& defaultVal = {}) const override;
         Vec4ui8 GetColor(const std::string& id, const Vec4ui8& defaultVal = {}) const override;
@@ -43,6 +45,8 @@ namespace shen3
         void SetVec2i(const std::string& id, const Vec2i& val) override;
         void SetVec3(const std::string& id, const Vec3& val) override;
         void SetVec3i(const std::string& id, const Vec3i& val) override;
+        void SetVec4(const std::string& id, const Vec4& val) override;
+        void SetVec4i(const std::string& id, const Vec4i& val) override;
         void SetFloatRect(const std::string& id, const RectF& val) override;
         void SetIntRect(const std::string& id, const RectI& val) override;
         void SetColor(const std::string& id, const Vec4ui8& val) override;

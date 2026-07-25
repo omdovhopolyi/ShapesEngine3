@@ -35,6 +35,18 @@ namespace shen3
         glUniform2f(location, value.x, value.y);
     }
 
+    void OpenGLShaderProgram::SetUniform(const std::string& name, const Vec3& value)
+    {
+        int location = GetUniformLocation(name);
+        glUniform3f(location, value.x, value.y, value.z);
+    }
+
+    void OpenGLShaderProgram::SetUniform(const std::string& name, const Vec4& value)
+    {
+        int location = GetUniformLocation(name);
+        glUniform4f(location, value.x, value.y, value.z, value.a);
+    }
+
     void OpenGLShaderProgram::SetUniform(const std::string& name, const Mat4& value)
     {
         int location = GetUniformLocation(name);

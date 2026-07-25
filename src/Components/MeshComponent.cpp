@@ -10,11 +10,6 @@ namespace shen3
 {
     REGISTER_LOADER(MeshComponent);
 
-    void MeshComponent::OnStarted()
-    {
-
-    }
-
     void MeshComponent::Update(float)
     {
         if (_mesh && _material) {

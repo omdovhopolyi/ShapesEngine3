@@ -14,6 +14,8 @@ namespace shen3
 
         void SetUniform(const std::string& name, float value) override;
         void SetUniform(const std::string& name, const Vec2& value) override;
+        void SetUniform(const std::string& name, const Vec3& value) override;
+        void SetUniform(const std::string& name, const Vec4& value) override;
         void SetUniform(const std::string& name, const Mat4& value) override;
 
         void Use() const override;

@@ -21,6 +21,8 @@ namespace shen3
 
         virtual void SetUniform(const std::string& name, float value) = 0;
         virtual void SetUniform(const std::string& name, const Vec2& value) = 0;
+        virtual void SetUniform(const std::string& name, const Vec3& value) = 0;
+        virtual void SetUniform(const std::string& name, const Vec4& value) = 0;
         virtual void SetUniform(const std::string& name, const Mat4& value) = 0;
 
         virtual void Use() const = 0;

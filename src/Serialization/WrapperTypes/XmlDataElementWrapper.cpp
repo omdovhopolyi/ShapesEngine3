@@ -18,7 +18,8 @@ namespace shen3
             _element = _document->RootElement();
         }
         else {
-            Assert(false, std::format("[XmlDataElementWrapper::LoadFile] Can not read file '{}'", filename));
+            auto msg = std::format("[XmlDataElementWrapper::LoadFile] Can not read file '{}'", filename);
+            Assert(false, msg.c_str());
         }
     }
 
@@ -135,6 +136,36 @@ namespace shen3
                 const int y = childElement.GetInt("y");
                 const int z = childElement.GetInt("z");
                 return { x, y, z };
+            }
+        }
+        return defaultVal;
+    }
+
+    Vec4 XmlDataElementWrapper::GetVec4(const std::string& id, const Vec4& defaultVal) const
+    {
+        if (_element) {
+            if (const auto child = _element->FirstChildElement(id.c_str())) {
+                auto childElement = XmlDataElementWrapper{ child };
+                const float x = childElement.GetFloat("x");
+                const float y = childElement.GetFloat("y");
+                const float z = childElement.GetFloat("z");
+                const float w = childElement.GetFloat("w");
+                return { x, y, z, w };
+            }
+        }
+        return defaultVal;
+    }
+
+    Vec4i XmlDataElementWrapper::GetIntVec4(const std::string& id, const Vec4i& defaultVal) const
+    {
+        if (_element) {
+            if (const auto child = _element->FirstChildElement(id.c_str())) {
+                auto childElement = XmlDataElementWrapper{ child };
+                const int x = childElement.GetInt("x");
+                const int y = childElement.GetInt("y");
+                const int z = childElement.GetInt("z");
+                const int w = childElement.GetInt("w");
+                return { x, y, z, w };
             }
         }
         return defaultVal;
@@ -319,6 +350,32 @@ namespace shen3
                 wrapper.SetInt("x", val.x);
                 wrapper.SetInt("y", val.y);
                 wrapper.SetInt("z", val.z);
+            }
+        }
+    }
+
+    void XmlDataElementWrapper::SetVec4(const std::string& id, const Vec4& val)
+    {
+        if (_element) {
+            if (auto child = _element->InsertNewChildElement(id.c_str())) {
+                auto wrapper = XmlDataElementWrapper{ child };
+                wrapper.SetFloat("x", val.x);
+                wrapper.SetFloat("y", val.y);
+                wrapper.SetFloat("z", val.z);
+                wrapper.SetFloat("w", val.a);
+            }
+        }
+    }
+
+    void XmlDataElementWrapper::SetVec4i(const std::string& id, const Vec4i& val)
+    {
+        if (_element) {
+            if (auto child = _element->InsertNewChildElement(id.c_str())) {
+                auto wrapper = XmlDataElementWrapper{ child };
+                wrapper.SetInt("x", val.x);
+                wrapper.SetInt("y", val.y);
+                wrapper.SetInt("z", val.z);
+                wrapper.SetInt("w", val.a);
             }
         }
     }

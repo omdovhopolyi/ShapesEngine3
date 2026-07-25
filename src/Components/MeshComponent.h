@@ -13,7 +13,6 @@ namespace shen3
         SERIALIZABLE(MeshComponent)
 
     public:
-        void OnStarted() override;
         void Update(float dt) override;
 
         void SetMesh(Mesh* mesh) { _mesh = mesh; }

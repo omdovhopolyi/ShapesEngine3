@@ -3,4 +3,4 @@
 #include <format>
 
 // Use (void) to silent unused warnings.
-#define Assert(exp, msg) assert(((void)msg, exp))
+#define Assert(exp, msg) assert(((void)msg, exp)) // TODO fix

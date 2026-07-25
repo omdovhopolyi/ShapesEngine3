@@ -18,6 +18,16 @@ namespace shen3
         _float2Uniforms[name] = value;
     }
 
+    void Material::SetParam(const std::string& name, const Vec3& value)
+    {
+        _float3Uniforms[name] = value;
+    }
+
+    void Material::SetParam(const std::string& name, const Vec4& value)
+    {
+        _float4Uniforms[name] = value;
+    }
+
     void Material::SetParam(const std::string& name, const Mat4& value)
     {
         _mat4Uniforms[name] = value;
@@ -32,6 +42,12 @@ namespace shen3
                 _shader->SetUniform(name, value);
             }
             for (const auto& [name, value] : _float2Uniforms) {
+                _shader->SetUniform(name, value);
+            }
+            for (const auto& [name, value] : _float3Uniforms) {
+                _shader->SetUniform(name, value);
+            }
+            for (const auto& [name, value] : _float4Uniforms) {
                 _shader->SetUniform(name, value);
             }
             for (const auto& [name, value] : _mat4Uniforms) {

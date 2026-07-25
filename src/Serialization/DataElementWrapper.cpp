@@ -83,6 +83,18 @@ namespace shen3
         return defaultVal;
     }
 
+    Vec4 DataElementWrapper::GetVec4(const std::string& id, const Vec4& defaultVal) const
+    {
+        Assert(false, "[DataElementWrapper::GetVec4] Not implemented");
+        return defaultVal;
+    }
+
+    Vec4i DataElementWrapper::GetIntVec4(const std::string& id, const Vec4i& defaultVal) const
+    {
+        Assert(false, "[DataElementWrapper::GetIntVec4] Not implemented");
+        return defaultVal;
+    }
+
     RectF DataElementWrapper::GetFloatRect(const std::string& id, const RectF& defaultVal) const
     {
         Assert(false, "");
@@ -157,6 +169,16 @@ namespace shen3
     void DataElementWrapper::SetVec3i(const std::string& id, const Vec3i& val)
     {
         Assert(false, "");
+    }
+
+    void DataElementWrapper::SetVec4(const std::string& id, const Vec4& val)
+    {
+        Assert(false, "[DataElementWrapper::SetVec4] Not implemented");
+    }
+
+    void DataElementWrapper::SetVec4i(const std::string& id, const Vec4i& val)
+    {
+        Assert(false, "[DataElementWrapper::SetVec4i] Not implemented");
     }
 
     void DataElementWrapper::SetFloatRect(const std::string& id, const RectF& val)

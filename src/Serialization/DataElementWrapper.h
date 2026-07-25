@@ -30,6 +30,8 @@ namespace shen3
         virtual Vec2i GetIntVec2(const std::string& id, const Vec2i& defaultVal = {}) const;
         virtual Vec3 GetVec3(const std::string& id, const Vec3& defaultVal = {}) const;
         virtual Vec3i GetIntVec3(const std::string& id, const Vec3i& defaultVal = {}) const;
+        virtual Vec4 GetVec4(const std::string& id, const Vec4& defaultVal = {}) const;
+        virtual Vec4i GetIntVec4(const std::string& id, const Vec4i& defaultVal = {}) const;
         virtual RectF GetFloatRect(const std::string& id, const RectF& def = {}) const;
         virtual RectI GetIntRect(const std::string& id, const RectI& def = {}) const;
         virtual Vec4ui8 GetColor(const std::string& id, const Vec4ui8& defaultVal = {}) const;
@@ -45,6 +47,8 @@ namespace shen3
         virtual void SetVec2i(const std::string& id, const Vec2i& val);
         virtual void SetVec3(const std::string& id, const Vec3& val);
         virtual void SetVec3i(const std::string& id, const Vec3i& val);
+        virtual void SetVec4(const std::string& id, const Vec4& val);
+        virtual void SetVec4i(const std::string& id, const Vec4i& val);
         virtual void SetFloatRect(const std::string& id, const RectF& val);
         virtual void SetIntRect(const std::string& id, const RectI& val);
         virtual void SetColor(const std::string& id, const Vec4ui8& val);

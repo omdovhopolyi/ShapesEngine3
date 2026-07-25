@@ -51,6 +51,14 @@ namespace shen3
                 const auto value = paramElement.GetVec2("value");
                 material->SetParam(paramName, value);
             }
+            else if (paramType == "vec3") {
+                const auto value = paramElement.GetVec3("value");
+                material->SetParam(paramName, value);
+            }
+            else if (paramType == "vec4") {
+                const auto value = paramElement.GetVec4("value");
+                material->SetParam(paramName, value);
+            }
         });
 
         AddMaterial(id, std::move(material));

@@ -12,12 +12,13 @@ namespace shen3
     public:
         void Draw() override;
 
-        void AddCommand(const RenderCommand& command);
+        void AddCommand(RenderCommand&& command);
         void ProcessCommands();
         void ClearCommands();
         void Sort();
 
     protected:
+        void PrepareCommand(RenderCommand& command);
         virtual void ProcessCommand(const RenderCommand& command) = 0;
 
     protected:

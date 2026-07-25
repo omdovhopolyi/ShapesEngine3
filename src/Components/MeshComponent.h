@@ -15,8 +15,8 @@ namespace shen3
     public:
         void Update(float dt) override;
 
-        void SetMesh(Mesh* mesh) { _mesh = mesh; }
-        void SetMaterial(Material* material) { _material = material; }
+        void SetMesh(Mesh* mesh);
+        void SetMaterial(Material* material);
 
     private:
         Mesh* _mesh = nullptr;

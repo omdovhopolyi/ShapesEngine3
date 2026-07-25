@@ -62,12 +62,12 @@ namespace shen3
         return _scale;
     }
 
-    const Mat4& Transform::GetLocalTransform() const
+    const Mat4& Transform::GetLocalTransformMat() const
     {
         return _transform;
     }
 
-    Mat4 Transform::GetWorldTransform(const Mat4& parentTransform)
+    Mat4 Transform::GetWorldTransformMat(const Mat4& parentTransform) const
     {
         return parentTransform * _transform;
     }

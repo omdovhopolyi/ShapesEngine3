@@ -14,6 +14,8 @@ namespace shen3
     {
     public:
         void SetShader(ShaderProgram* shader);
+        const ShaderProgram* GetShader() const;
+
         void SetParam(const std::string& name, float value);
         void SetParam(const std::string& name, const Vec2& value);
         void SetParam(const std::string& name, const Vec3& value);

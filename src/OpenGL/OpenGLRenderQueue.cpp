@@ -1,6 +1,8 @@
 #include <OpenGL/OpenGLRenderQueue.h>
 #include <Graphics/RenderCommand.h>
 #include <Graphics/ShaderProgram.h>
+#include <Graphics/Mesh.h>
+#include <Graphics/Material.h>
 #include <Managers/ManagersController.h>
 #include <SDL/SDLMainWindow.h>
 

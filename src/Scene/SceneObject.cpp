@@ -15,12 +15,6 @@ namespace shen3
 
     void SceneObject::Update(float dt)
     {
-        for (auto& child : _children) {
-            if (child) {
-                child->Update(dt);
-            }
-        }
-
         if (GetState() == SceneObjectState::Instantiated) {
             for (auto& component : _components) {
                 component->OnStarted();
@@ -32,6 +26,12 @@ namespace shen3
         if (IsActive() && GetState() == SceneObjectState::Alive) {
             for (auto& component : _components) {
                 component->Update(dt);
+            }
+        }
+
+        for (auto& child : _children) {
+            if (child) {
+                child->Update(dt);
             }
         }
     }
@@ -46,14 +46,22 @@ namespace shen3
         _name = name;
     }
 
-    const Transform& SceneObject::GetTransform() const
+    const Transform& SceneObject::GetLocalTransform() const
     {
         return _transform;
     }
 
-    void SceneObject::SetTransform(const Transform& transform)
+    void SceneObject::SetLocalTransform(const Transform& transform)
     {
         _transform = transform;
+    }
+
+    Mat4 SceneObject::GetWorldTransformMat() const
+    {
+        if (_parent) {
+            return _transform.GetWorldTransformMat(_parent->GetLocalTransform().GetLocalTransformMat());
+        }
+        return _transform.GetLocalTransformMat();
     }
 
     SceneObject* SceneObject::GetParent() const
@@ -77,24 +85,24 @@ namespace shen3
         }
 
         if (_parent) {
-            auto thisUnique = _parent->ReleaseChild(this);
+            auto thisPtr = _parent->ReleaseChild(this);
             _parent = parent;
-            _parent->AddChild(std::move(thisUnique));
+            _parent->AddChild(std::move(thisPtr));
         }
         else {
             _parent = parent;
-            auto thisUnique = std::make_unique<SceneObject>(_name);
-            thisUnique.reset(this);
-            _parent->AddChild(std::move(thisUnique));
+            auto thisPtr = std::make_shared<SceneObject>(_name);
+            thisPtr.reset(this);
+            _parent->AddChild(std::move(thisPtr));
         }
     }
 
     void SceneObject::CreateChild(const std::string& name/* = "node"*/)
     {
-        _children.push_back(std::make_unique<SceneObject>(name));
+        _children.push_back(std::make_shared<SceneObject>(name));
     }
 
-    void SceneObject::AddChild(std::unique_ptr<SceneObject> node)
+    void SceneObject::AddChild(std::shared_ptr<SceneObject> node)
     {
         _children.push_back(std::move(node));
     }
@@ -118,7 +126,7 @@ namespace shen3
         return _children[index].get();
     }
 
-    std::unique_ptr<SceneObject> SceneObject::ReleaseChild(const SceneObject* sceneObject)
+    std::shared_ptr<SceneObject> SceneObject::ReleaseChild(const SceneObject* sceneObject)
     {
         auto it = std::find_if(_children.begin(), _children.end(), [sceneObject](const auto& child) {
             return child.get() == sceneObject;

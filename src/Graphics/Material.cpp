@@ -8,6 +8,11 @@ namespace shen3
         _shader = shader;
     }
 
+    const ShaderProgram* Material::GetShader() const
+    {
+        return _shader;
+    }
+
     void Material::SetParam(const std::string& name, float value)
     {
         _floatUniforms[name] = value;

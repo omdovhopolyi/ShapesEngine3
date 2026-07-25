@@ -31,17 +31,19 @@ namespace shen3
         const std::string& GetName() const;
         void SetName(const std::string& name);
 
-        const Transform& GetTransform() const;
-        void SetTransform(const Transform& transform);
+        const Transform& GetLocalTransform() const;
+        void SetLocalTransform(const Transform& transform);
+
+        Mat4 GetWorldTransformMat() const;
 
         SceneObject* GetParent() const;
         void SetParent(SceneObject* parent);
 
         void CreateChild(const std::string& name = "node");
-        void AddChild(std::unique_ptr<SceneObject> node);
+        void AddChild(std::shared_ptr<SceneObject> node);
         SceneObject* GetChild(const std::string& name) const;
         SceneObject* GetChild(int index) const;
-        std::unique_ptr<SceneObject> ReleaseChild(const SceneObject* sceneObject);
+        std::shared_ptr<SceneObject> ReleaseChild(const SceneObject* sceneObject);
         void RemoveChild(const SceneObject* sceneObject);
 
         SceneObjectState GetState() const;
@@ -91,8 +93,8 @@ namespace shen3
         Transform _transform;
         SceneObject* _parent = nullptr;
         Scene* _scene = nullptr;
-        std::vector<std::unique_ptr<SceneObject>> _children;
-        std::vector<std::unique_ptr<Component>> _components;
+        std::vector<std::shared_ptr<SceneObject>> _children;
+        std::vector<std::shared_ptr<Component>> _components;
         std::map<std::type_index, Component*> _mappedComponents;
     };
 
@@ -132,7 +134,7 @@ namespace shen3
     template<class T>
     T* SceneObject::AddComponent()
     {
-        auto compPtr = std::make_unique<T>();
+        auto compPtr = std::make_shared<T>();
         compPtr->SetSceneObject(this);
         auto comp = compPtr.get();
         _components.push_back(std::move(compPtr));
@@ -143,7 +145,7 @@ namespace shen3
     template<class T>
     T* SceneObject::AddComponent(const std::string& name)
     {
-        auto compPtr = std::make_unique<T>();
+        auto compPtr = std::make_shared<T>();
         compPtr->SetName(name);
         compPtr->SetSceneObject(this);
         auto comp = compPtr.get();

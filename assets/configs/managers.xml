@@ -6,6 +6,7 @@
     <manager type="MaterialsManager"/>
     <manager type="OpenGLMeshesManager"/>
     <manager type="SDLInputManager"/>
+    <manager type="CameraManager"/>
     <manager type="ScenesManager"/>
     <manager type="OpenGLRenderQueue"/>
 </managers>

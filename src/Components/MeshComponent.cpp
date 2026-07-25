@@ -13,14 +13,24 @@ namespace shen3
     void MeshComponent::Update(float)
     {
         if (_mesh && _material) {
-            const auto& transform = _sceneObject->GetTransform();
+            const auto transform = _sceneObject->GetWorldTransformMat();
             auto renderQueue = ManagersFacade::Instance().GetManager<RenderQueue>();
 
             RenderCommand command;
             command.mesh = _mesh;
             command.material = _material;
             command.transform = transform;
-            renderQueue->AddCommand(command);
+            renderQueue->AddCommand(std::move(command));
         }
+    }
+
+    void MeshComponent::SetMesh(Mesh* mesh)
+    { 
+        _mesh = mesh; 
+    }
+
+    void MeshComponent::SetMaterial(Material* material)
+    {
+        _material = material;
     }
 }

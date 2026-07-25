@@ -9,6 +9,7 @@ namespace shen3
 
     class Component
         : public Serializable
+        , public std::enable_shared_from_this<Component>
     {
     public:
         virtual void OnInstantiated() {}

@@ -21,8 +21,8 @@ namespace shen3
         void SetScale(const Vec3& scale, bool updateTransform = false);
         const Vec3& GetScale() const;
 
-        const Mat4& GetLocalTransform() const;
-        Mat4 GetWorldTransform(const Mat4& parentTransform);
+        const Mat4& GetLocalTransformMat() const;
+        Mat4 GetWorldTransformMat(const Mat4& parentTransform) const;
 
         void UpdateTransform();
 

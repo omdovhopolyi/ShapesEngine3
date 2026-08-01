@@ -1,6 +1,9 @@
 #pragma once
 
 #include <Managers/BaseManagers/UpdateManager.h>
+#include <Messenger/SubscriptionsContainer.h>
+
+struct SDL_Window;
 
 namespace shen3
 {
@@ -10,6 +13,7 @@ namespace shen3
         MANAGERS_FACTORY(SDLMainWindow)
 
     public:
+        void Init(ManagersController* managersController);
         void Load() override;
         void Start() override;
         void Update() override;
@@ -19,5 +23,11 @@ namespace shen3
 
     private:
         void CreateMainWindow();
+        void InitSubscriptions();
+        void BroadcastWindowSize();
+
+    private:
+        SDL_Window* _window = nullptr;
+        SubcriptionsContainer _subscriptions;
     };
 }

@@ -73,5 +73,15 @@ namespace shen3
 
     struct GainedFocus : Event {};
 
+    struct RequestMainWindowSize : Event {};
+
+    struct WindowResized : Event
+    {
+        int width = 0;
+        int height = 0;
+
+        WindowResized(int w, int h);
+    };
+
     struct PauseGameEvent : Event {};
 }

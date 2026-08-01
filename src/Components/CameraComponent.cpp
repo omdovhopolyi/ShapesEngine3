@@ -1,10 +1,23 @@
 #include <Components/CameraComponent.h>
 #include <Math/Utils.h>
 #include <Scene/SceneObject.h>
+#include <Messenger/Messenger.h>
+#include <Messenger/Events/Common.h>
 
 namespace shen3
 {
     REGISTER_LOADER(CameraComponent)
+
+    void CameraComponent::OnInstantiated()
+    {
+        InitSubscriptions();
+        RequestWindowSize();
+    }
+
+    void CameraComponent::RequestWindowSize()
+    {
+        Messenger::Instance().Broadcast<RequestMainWindowSize>();
+    }
 
     Mat4 CameraComponent::GetViewMatrix() const
     {
@@ -13,8 +26,18 @@ namespace shen3
 
     Mat4 CameraComponent::GetProjectionsMatrix() const
     {
-        const float ratio = static_cast<float>(1280) / static_cast<float>(720); // TODO get from render target
+        return CreateProjectionsMatrix(_fov, _ratio, _near, _far);
+    }
 
-        return CreateProjectionsMatrix(_fov, ratio, _near, _far);
+    void CameraComponent::InitSubscriptions()
+    {
+        _subscriptions.Subscribe<WindowResized>([this](const auto& event) {
+            OnWindowSizeChanged(event.width, event.height);
+        });
+    }
+
+    void CameraComponent::OnWindowSizeChanged(int width, int height)
+    {
+        _ratio = static_cast<float>(width) / static_cast<float>(height);
     }
 }

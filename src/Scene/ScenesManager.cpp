@@ -22,12 +22,14 @@ namespace shen3
         auto meshComponent = sceneObject->AddComponent<MeshComponent>();
         meshComponent->SetMesh(mesh);
         meshComponent->SetMaterial(material);
+        sceneObject->OnInstantiated();
 
         auto cameraObject = scene->CreateSceneObject(nullptr, "camera");
         auto camera = cameraObject->AddComponent<CameraComponent>();
         auto cameraTransform = cameraObject->GetLocalTransform();
         cameraTransform.SetPosition({ 0.f, 0.f, 3.f }, true);
         cameraObject->SetLocalTransform(cameraTransform);
+        cameraObject->OnInstantiated();
         
         auto cameraManager = GetManagers()->GetManager<CameraManager>();
         auto sharedCameraBase = camera->shared_from_this();

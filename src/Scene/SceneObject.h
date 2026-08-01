@@ -26,6 +26,8 @@ namespace shen3
         SceneObject& operator = (const SceneObject& other) = delete;
         SceneObject& operator = (SceneObject&& other) = delete;
 
+        void OnInstantiated();
+
         void Update(float dt);
 
         const std::string& GetName() const;

@@ -13,6 +13,13 @@ namespace shen3
         : _name(name)
     { }
 
+    void SceneObject::OnInstantiated()
+    {
+        for (auto& component : _components) {
+            component->OnInstantiated();
+        }
+    }
+
     void SceneObject::Update(float dt)
     {
         if (GetState() == SceneObjectState::Instantiated) {

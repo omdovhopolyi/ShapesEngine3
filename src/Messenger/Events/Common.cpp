@@ -52,4 +52,9 @@ namespace shen3
     MapLoadedEvent::MapLoadedEvent(const std::string& id)
         : mapId(id)
     {};
+
+    WindowResized::WindowResized(int w, int h)
+        : width(w)
+        , height(h)
+    {}
 }

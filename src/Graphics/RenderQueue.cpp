@@ -24,17 +24,17 @@ namespace shen3
 
     void RenderQueue::ProcessCommands()
     {
+        const auto cameraManager = ManagersFacade::Instance().GetManager<CameraManager>();
+        auto camera = cameraManager->GetMainCamera();
+
         for (auto& command : _commands) {
-            PrepareCommand(command);
+            PrepareCommand(command, camera);
             ProcessCommand(command);
         }
     }
 
-    void RenderQueue::PrepareCommand(RenderCommand& command)
+    void RenderQueue::PrepareCommand(RenderCommand& command, CameraComponent* camera)
     {
-        const auto cameraManager = ManagersFacade::Instance().GetManager<CameraManager>();
-        auto camera = cameraManager->GetMainCamera();
-
         command.material->SetParam("uModel", command.transform);
         command.material->SetParam("uView", camera->GetViewMatrix());
         command.material->SetParam("uProjection", camera->GetProjectionsMatrix());

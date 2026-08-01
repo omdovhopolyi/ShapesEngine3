@@ -6,6 +6,8 @@
 
 namespace shen3
 {
+    class CameraComponent;
+
     class RenderQueue
         : public RenderManager
     {
@@ -18,7 +20,7 @@ namespace shen3
         void Sort();
 
     protected:
-        void PrepareCommand(RenderCommand& command);
+        void PrepareCommand(RenderCommand& command, CameraComponent* camera);
         virtual void ProcessCommand(const RenderCommand& command) = 0;
 
     protected:

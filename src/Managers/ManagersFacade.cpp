@@ -6,4 +6,9 @@ namespace shen3
     {
         _managersController = managersController;
     }
+
+    ManagersController* ManagersFacade::GetManagersController() const
+    {
+        return _managersController;
+    }
 }

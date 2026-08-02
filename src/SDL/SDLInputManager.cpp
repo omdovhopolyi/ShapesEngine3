@@ -159,7 +159,7 @@ namespace shen3
 
         for (int i = 0; i < keysState.size(); i++) {
             if (keysState[i] == true) {
-                const SDL_Keycode keycode = SDL_SCANCODE_TO_KEYCODE(static_cast<unsigned int>(keysState[i]));
+                const SDL_Keycode keycode = SDL_GetKeyFromScancode(static_cast<SDL_Scancode>(i), SDL_KMOD_NONE, false);
                 Messenger::Instance().Broadcast<KeyEvent>(
                     InputEventType::Hold,
                     static_cast<int>(keycode),

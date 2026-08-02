@@ -3,6 +3,7 @@
 
 #include <Components/MeshComponent.h>
 #include <Components/CameraComponent.h>
+#include <Components/PlayerInputComponent.h>
 #include <Graphics/MeshesManager.h>
 #include <Graphics/MaterialsManager.h>
 #include <Camera/CameraManager.h>
@@ -27,8 +28,11 @@ namespace shen3
         auto cameraObject = scene->CreateSceneObject(nullptr, "camera");
         auto camera = cameraObject->AddComponent<CameraComponent>();
         auto cameraTransform = cameraObject->GetLocalTransform();
-        cameraTransform.SetPosition({ 0.f, 0.f, 3.f }, true);
+        cameraTransform.SetPosition({ 0.f, 0.f, 3.f });
         cameraObject->SetLocalTransform(cameraTransform);
+
+        cameraObject->AddComponent<PlayerInputComponent>();
+
         cameraObject->OnInstantiated();
         
         auto cameraManager = GetManagers()->GetManager<CameraManager>();

@@ -75,6 +75,10 @@ namespace shen3
             Logger::Err("GLAD init failed");
             return;
         }
+
+        SDL_CaptureMouse(true);
+        SDL_HideCursor();
+        SDL_SetWindowRelativeMouseMode(_window, true);
     }
 
     void SDLMainWindow::InitSubscriptions()

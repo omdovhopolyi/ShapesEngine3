@@ -36,6 +36,8 @@ namespace shen3
             }
         }
 
+        _transform.UpdateTransform();
+
         for (auto& child : _children) {
             if (child) {
                 child->Update(dt);

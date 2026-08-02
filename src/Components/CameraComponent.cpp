@@ -21,7 +21,7 @@ namespace shen3
 
     Mat4 CameraComponent::GetViewMatrix() const
     {
-        return CreateViewMatrix(_sceneObject->GetWorldTransformMat());
+        return CreateViewMatrix(_sceneObject->GetLocalTransform());
     }
 
     Mat4 CameraComponent::GetProjectionsMatrix() const

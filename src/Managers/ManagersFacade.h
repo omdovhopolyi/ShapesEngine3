@@ -13,6 +13,8 @@ namespace shen3
     public:
         void Init(ManagersController* managersController);
 
+        ManagersController* GetManagersController() const;
+
         template<class T>
         T* GetManager() const;
 

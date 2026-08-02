@@ -15,9 +15,13 @@ namespace shen3
         void SetPosition(const Vec3& position);
         const Vec3& GetPosition() const;
 
-        void Rotate(const Vec3& offset);
-        void SetRotation(const Vec3& rotation);
-        const Vec3& GetRotation() const;
+        void Rotate(const Quat& rotation);
+        void Rotate(Vec3 angles);
+        void Rotate(float angle, const Vec3& axis);
+        void SetRotation(float angle, const Vec3& axis);
+        void SetRotation(const Vec3& angles);
+        void SetRotation(const Quat& rotation);
+        const Quat& GetRotation() const;
 
         void Scale(const Vec3& offset);
         void SetScale(const Vec3& scale);
@@ -36,10 +40,10 @@ namespace shen3
 
     private:
         Vec3 _position = Vec3(0.f);
-        Vec3 _rotation = Vec3(0.f);
+        //Vec3 _rotation = Vec3(0.f);
         Vec3 _scale = Vec3(1.f);
         Mat4 _transform = Mat4(1.f);
-        Quat _quat;
+        Quat _rotation = Quat(1.f, 0.f, 0.f, 0.f);
         bool _isDirty = true;
     };
 }

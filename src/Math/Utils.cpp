@@ -40,4 +40,14 @@ namespace shen3
     {
         vec = glm::normalize(vec);
     }
+
+    Quat CreateRotation(float angle, const Vec3& axis)
+    {
+        return glm::angleAxis(glm::radians(angle), axis);
+    }
+
+    Quat Rotate(Quat& rotation, float angle, const Vec3& axis)
+    {
+        return rotation * CreateRotation(angle, axis);
+    }
 }

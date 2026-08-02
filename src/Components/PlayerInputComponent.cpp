@@ -4,7 +4,7 @@
 #include <Managers/ManagersFacade.h>
 #include <Time/TimeManager.h>
 #include <Managers/BaseManagers/PlayerWindowInputManager.h>
-
+#include <Math/Utils.h>
 #include <Logger/Logger.h>
 
 namespace shen3
@@ -67,11 +67,17 @@ namespace shen3
             auto time = managers->GetTime();
             const float dt = time.GameDt();
 
-            const float xRotation = static_cast<float>(-event.dy) * _mouseSensitivity * dt;
-            const float yRotation = static_cast<float>(-event.dx) * _mouseSensitivity * dt;
+            const float xRotation = static_cast<float>(-event.dx) * _mouseSensitivity * dt;
+            const float yRotation = static_cast<float>(-event.dy) * _mouseSensitivity * dt;
 
             auto transform = _sceneObject->GetLocalTransform();
-            transform.Rotate({ xRotation, yRotation, 0.f });
+
+            const auto worldUp = Vec3(0.f, 1.f, 0.f);
+            const auto localRight = transform.GetRight();
+            auto rotationY = CreateRotation(yRotation, localRight);
+            auto rotationX = CreateRotation(xRotation, worldUp);
+            auto rotation = rotationY * rotationX;
+            transform.Rotate(rotation);
             _sceneObject->SetLocalTransform(transform);
         });
         _subscriptions.Subscribe<MouseWheelEvent>([this](const MouseWheelEvent& event) {

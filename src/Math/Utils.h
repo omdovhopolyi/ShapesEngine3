@@ -10,4 +10,7 @@ namespace shen3
     void NormalizeThis(Vec2& vec);
     Vec3 Normalize(const Vec3& vec);
     void NormalizeThis(Vec3& vec);
+
+    Quat CreateRotation(float angle, const Vec3& axis);
+    Quat Rotate(Quat& rotation, float angle, const Vec3& axis);
 }

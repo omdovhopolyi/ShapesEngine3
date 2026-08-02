@@ -22,19 +22,47 @@ namespace shen3
         return _position;
     }
 
-    void Transform::Rotate(const Vec3& offset)
+    void Transform::Rotate(const Quat& rotation)
     {
-        _rotation += offset;
+        _rotation = rotation * _rotation;
         SetDirty(true);
     }
 
-    void Transform::SetRotation(const Vec3& rotation)
+    void Transform::Rotate(Vec3 angles)
+    {
+        angles.x = glm::radians(angles.x);
+        angles.y = glm::radians(angles.y);
+        angles.z = glm::radians(angles.z);
+        _rotation = Quat(angles) * _rotation;
+        SetDirty(true);
+    }
+
+    void Transform::Rotate(float angle, const Vec3& axis)
+    {
+        Quat rot = glm::angleAxis(glm::radians(angle), axis);
+        _rotation = rot * _rotation;
+        SetDirty(true);
+    }
+
+    void Transform::SetRotation(float angle, const Vec3& axis)
+    {
+        _rotation = glm::angleAxis(glm::radians(angle), axis);
+        SetDirty(true);
+    }
+
+    void Transform::SetRotation(const Vec3& angles)
+    {
+        _rotation = Quat{ angles };
+        SetDirty(true);
+    }
+
+    void Transform::SetRotation(const Quat& rotation)
     {
         _rotation = rotation;
         SetDirty(true);
     }
 
-    const Vec3& Transform::GetRotation() const
+    const Quat& Transform::GetRotation() const
     {
         return _rotation;
     }
@@ -58,12 +86,12 @@ namespace shen3
 
     Vec3 Transform::GetForward() const
     {
-        return Normalize(static_cast<Vec3>(_transform * Vec4(0.f, 0.f, -1.f, 0.f)));
+        return _rotation * Vec3(0.f, 0.f, -1.f);
     }
 
     Vec3 Transform::GetRight() const
     {
-        return Normalize(static_cast<Vec3>(_transform * Vec4(1.f, 0.f, 0.f, 0.f)));
+        return _rotation * Vec3(1.f, 0.f, 0.f);
     }
 
     Mat4 Transform::GetLocalTransformMat() const
@@ -83,9 +111,10 @@ namespace shen3
 
             _transform = Mat4(1.f);
             _transform = glm::translate(_transform, _position);
-            _transform = glm::rotate(_transform, glm::radians(_rotation.y), { 0.f, 1.f, 0.f });
-            _transform = glm::rotate(_transform, glm::radians(_rotation.x), { 1.f, 0.f, 0.f });
-            _transform = glm::rotate(_transform, glm::radians(_rotation.z), { 0.f, 0.f, 1.f });
+            _transform = _transform * glm::mat4_cast(_rotation);
+            //_transform = glm::rotate(_transform, glm::radians(_rotation.y), { 0.f, 1.f, 0.f });
+            //_transform = glm::rotate(_transform, glm::radians(_rotation.x), { 1.f, 0.f, 0.f });
+            //_transform = glm::rotate(_transform, glm::radians(_rotation.z), { 0.f, 0.f, 1.f });
             _transform = glm::scale(_transform, _scale);
         }
     }

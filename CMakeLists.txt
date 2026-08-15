@@ -24,9 +24,11 @@ foreach(source IN LISTS SRC_FILES)
 endforeach()
 
 if(MSVC)
-    target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX /wd4100)
+    target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
+    target_compile_options(${TARGET_NAME} PRIVATE /WD4100)
 else()
-    target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror -Wno-unused-parameter)
+    target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+    target_compile_options(${TARGET_NAME} PRIVATE -Wno-unused-parameter)
 endif()
 
 target_compile_features(${TARGET_NAME} PUBLIC cxx_std_20)

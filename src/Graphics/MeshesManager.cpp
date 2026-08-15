@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <format>
+#include <cstdio>
 
 namespace shen3
 {
@@ -51,13 +52,13 @@ namespace shen3
         while (getline(file, line)) {
             if (strncmp(line.c_str(), "v ", 2) == 0) {
                 Vec3 vertex;
-                (void)sscanf_s(line.c_str(), "v %f %f %f", &vertex.x, &vertex.y, &vertex.z);
+                (void)sscanf(line.c_str(), "v %f %f %f", &vertex.x, &vertex.y, &vertex.z);
                 meshData.vertices.push_back(vertex);
             }
             // tex coords info
             if (strncmp(line.c_str(), "vt ", 3) == 0) {
                 Vec2 texCoord;
-                (void)sscanf_s(line.c_str(), "vt %f %f", &texCoord.x, &texCoord.y);
+                (void)sscanf(line.c_str(), "vt %f %f", &texCoord.x, &texCoord.y);
                 meshData.texCoords.push_back(texCoord);
             }
             // faces info
@@ -65,7 +66,7 @@ namespace shen3
                 int vertIndices[4];
                 int texIndices[4];
                 int normIndices[4];
-                int count = sscanf_s(line.c_str(), "f %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d",
+                int count = sscanf(line.c_str(), "f %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d",
                     &vertIndices[0], &texIndices[0], &normIndices[0],
                     &vertIndices[1], &texIndices[1], &normIndices[1],
                     &vertIndices[2], &texIndices[2], &normIndices[2],

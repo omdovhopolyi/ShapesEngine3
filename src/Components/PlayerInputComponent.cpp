@@ -41,8 +41,6 @@ namespace shen3
             const auto inputManager = managers->GetInput();
             const auto key = inputManager->GetCharByKey(event.code);
 
-            Vec3 offset = Vec3{ 0.f, 0.f, 0.f };
-
             if (key == "w") {
                 transform.Translate(forward * _moveSpeed * dt);
             }

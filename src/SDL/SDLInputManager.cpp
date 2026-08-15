@@ -157,7 +157,7 @@ namespace shen3
             }
         }
 
-        for (int i = 0; i < keysState.size(); i++) {
+        for (int i = 0; i < static_cast<int>(keysState.size()); i++) {
             if (keysState[i] == true) {
                 const SDL_Keycode keycode = SDL_GetKeyFromScancode(static_cast<SDL_Scancode>(i), SDL_KMOD_NONE, false);
                 Messenger::Instance().Broadcast<KeyEvent>(
@@ -170,7 +170,7 @@ namespace shen3
             }
         }
 
-        for (int i = 0; i < buttonsState.size(); i++) {
+        for (int i = 0; i < static_cast<int>(buttonsState.size()); i++) {
             if (buttonsState[i] == true) {
                 Messenger::Instance().Broadcast<MouseButtonEvent>(
                     InputEventType::Hold,

@@ -24,3 +24,4 @@
 
 #define REGISTER_LOADER(Type) \
     bool Type::LoaderRegistered = Type::RegisterLoader();
+

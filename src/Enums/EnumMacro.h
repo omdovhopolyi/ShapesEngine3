@@ -50,4 +50,5 @@
         std::vector<std::string> enumStrArray;                                                      \
     };                                                                                              \
                                                                                                     \
-    static name##EnumTraits name##Enum(#__VA_ARGS__);                                               
+    static name##EnumTraits name##Enum(#__VA_ARGS__);                                              
+ 

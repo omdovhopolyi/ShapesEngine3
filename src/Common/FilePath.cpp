@@ -5,10 +5,10 @@ namespace shen3
 {
     std::string FilePath::Path(const char* path)
     {
-#ifdef _DEBUG
-        return std::format("../{}", path);
-#else
+#ifdef NDEBUG
         return path;
+#else
+        return std::format("../{}", path);
 #endif
     }
 

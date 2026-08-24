@@ -13,6 +13,7 @@ file (GLOB_RECURSE SRC_FILES
     ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/submodules/tinyxml2/tinyxml2.h
     ${PROJECT_SOURCE_DIR}/submodules/tinyxml2/tinyxml2.cpp
+    ${PROJECT_SOURCE_DIR}/submodules/stb/stb_image.h
 )
 
 add_executable(${TARGET_NAME} ${SRC_FILES})
@@ -55,6 +56,7 @@ include_directories(submodules/SDL/include)
 include_directories(submodules/glm)
 include_directories(submodules/tinyxml2)
 include_directories(submodules/spdlog/include)
+include_directories(submodules/stb)
 
 include_directories(external/glad/include)
 

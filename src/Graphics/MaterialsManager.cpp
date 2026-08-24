@@ -1,5 +1,6 @@
 #include <Graphics/MaterialsManager.h>
 #include <Graphics/ShadersManager.h>
+#include <Graphics/TexturesManager.h>
 #include <Serialization/DataElementWrapperFactory.h>
 #include <Common/FilePath.h>
 #include <Managers/ManagersController.h>
@@ -58,6 +59,16 @@ namespace shen3
             else if (paramType == "vec4") {
                 const auto value = paramElement.GetVec4("value");
                 material->SetParam(paramName, value);
+            }
+        });
+
+        auto texturesManager = GetManagers()->GetManager<TexturesManager>();
+
+        materialElement->ForAllChildren("texture", [&](const DataElementWrapper& textureElement) {
+            const auto texType = textureElement.GetStr("type");
+            const auto texId = textureElement.GetStr("id");
+            if (auto texture = texturesManager->GetTexture(texId)) {
+                material->SetTexture(texType, texture->GetId());
             }
         });
 

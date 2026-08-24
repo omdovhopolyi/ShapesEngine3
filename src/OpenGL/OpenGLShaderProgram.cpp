@@ -53,6 +53,18 @@ namespace shen3
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
     }
 
+    void OpenGLShaderProgram::SetUniform(const std::string& name, int tex)
+    {
+        int location = GetUniformLocation(name);
+        glUniform1i(location, tex);
+    }
+
+    void OpenGLShaderProgram::ActivateTexture(int texIndex, unsigned int texId)
+    {
+        glActiveTexture(GL_TEXTURE0 + texIndex);
+        glBindTexture(GL_TEXTURE_2D, texId);
+    }
+
     void OpenGLShaderProgram::Use() const
     {
         glUseProgram(_programId);

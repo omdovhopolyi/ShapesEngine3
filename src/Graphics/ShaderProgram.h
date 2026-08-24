@@ -24,6 +24,9 @@ namespace shen3
         virtual void SetUniform(const std::string& name, const Vec3& value) = 0;
         virtual void SetUniform(const std::string& name, const Vec4& value) = 0;
         virtual void SetUniform(const std::string& name, const Mat4& value) = 0;
+        virtual void SetUniform(const std::string& name, int texId) = 0;
+
+        virtual void ActivateTexture(int texIndex, unsigned int texId) = 0;
 
         virtual void Use() const = 0;
 

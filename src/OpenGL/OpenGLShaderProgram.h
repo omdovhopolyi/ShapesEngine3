@@ -17,6 +17,9 @@ namespace shen3
         void SetUniform(const std::string& name, const Vec3& value) override;
         void SetUniform(const std::string& name, const Vec4& value) override;
         void SetUniform(const std::string& name, const Mat4& value) override;
+        void SetUniform(const std::string& name, int texId) override;
+
+        void ActivateTexture(int texIndex, unsigned int texId) override;
 
         void Use() const override;
     };

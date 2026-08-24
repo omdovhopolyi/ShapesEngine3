@@ -22,6 +22,8 @@ namespace shen3
         void SetParam(const std::string& name, const Vec4& value);
         void SetParam(const std::string& name, const Mat4& value);
 
+        void SetTexture(const std::string& type, const unsigned int tex);
+
         void Use();
 
     private:
@@ -32,5 +34,6 @@ namespace shen3
         std::unordered_map<std::string, Vec3> _float3Uniforms;
         std::unordered_map<std::string, Vec4> _float4Uniforms;
         std::unordered_map<std::string, Mat4> _mat4Uniforms;
+        std::unordered_map<std::string, unsigned int> _textures;
     };
 }

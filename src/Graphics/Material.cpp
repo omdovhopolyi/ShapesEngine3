@@ -38,6 +38,11 @@ namespace shen3
         _mat4Uniforms[name] = value;
     }
 
+    void Material::SetTexture(const std::string& type, const unsigned int tex)
+    {
+        _textures[type] = tex;
+    }
+
     void Material::Use()
     {
         if (_shader) {
@@ -57,6 +62,12 @@ namespace shen3
             }
             for (const auto& [name, value] : _mat4Uniforms) {
                 _shader->SetUniform(name, value);
+            }
+            int texIndex = 0;
+            for (const auto& [name, value] : _textures) {
+                _shader->ActivateTexture(texIndex, value);
+                _shader->SetUniform(name, texIndex);
+                texIndex++;
             }
         }
     }

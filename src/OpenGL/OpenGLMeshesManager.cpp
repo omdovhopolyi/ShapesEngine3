@@ -21,6 +21,7 @@ namespace shen3
                 const auto& meshData = mesh->GetMeshData();
 
                 unsigned int vbo;
+                unsigned int texVbo;
                 unsigned int ebo;
                 unsigned int vao;
 
@@ -32,6 +33,11 @@ namespace shen3
                 glBufferData(GL_ARRAY_BUFFER, meshData.vertices.size() * sizeof(Vec3), meshData.vertices.data(), GL_STATIC_DRAW);
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+                glGenBuffers(1, &texVbo);
+                glBindBuffer(GL_ARRAY_BUFFER, texVbo);
+                glBufferData(GL_ARRAY_BUFFER, meshData.texCoords.size() * sizeof(Vec2), meshData.texCoords.data(), GL_STATIC_DRAW);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+
                 glGenBuffers(1, &ebo);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.indices.size() * sizeof(unsigned int), meshData.indices.data(), GL_STATIC_DRAW);
@@ -41,6 +47,12 @@ namespace shen3
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
                 glEnableVertexAttribArray(0);
+
+                glBindBuffer(GL_ARRAY_BUFFER, texVbo);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+                glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vec2), (void*)0);
+                glEnableVertexAttribArray(1);
+
                 glBindVertexArray(0);
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
                 glBindBuffer(GL_ARRAY_BUFFER, 0);

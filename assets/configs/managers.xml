@@ -2,6 +2,7 @@
 <managers>
     <manager type="TimeManager"/>
     <manager type="SDLMainWindow"/>
+    <manager type="TexturesManager"/>
     <manager type="OpenGLShadersManager"/>
     <manager type="MaterialsManager"/>
     <manager type="OpenGLMeshesManager"/>

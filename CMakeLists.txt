@@ -4,10 +4,6 @@ set(TARGET_NAME ShapesEngine3)
 
 project(${TARGET_NAME})
 
-if(MSVC)
-    add_compile_options(/utf-8)
-endif()
-
 file (GLOB_RECURSE SRC_FILES 
     ${PROJECT_SOURCE_DIR}/src/*.h
     ${PROJECT_SOURCE_DIR}/src/*.cpp
@@ -28,6 +24,7 @@ if(MSVC)
     target_compile_options(${TARGET_NAME} PRIVATE /W4 /WX)
     target_compile_options(${TARGET_NAME} PRIVATE /wd4100)
     target_compile_definitions(${TARGET_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS)
+    target_compile_options(${TARGET_NAME} PRIVATE /utf-8)
 else()
     target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
     target_compile_options(${TARGET_NAME} PRIVATE -Wno-unused-parameter)
@@ -42,14 +39,21 @@ set(SDL_STATIC ON CACHE BOOL "" FORCE)
 set(SDL_X11_XSCRNSAVER OFF CACHE BOOL "" FORCE)
 set(SDL_X11_XTEST OFF CACHE BOOL "" FORCE)
 
+set(SPDLOG_BUILD_SHARED OFF CACHE BOOL "" FORCE)
+
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+
 add_subdirectory(submodules/SDL)
 target_link_libraries(${TARGET_NAME} SDL3-static)
 
-#add_subdirectory(external/glad)
-#target_link_libraries(${TARGET_NAME} glad)
-
 add_subdirectory(submodules/glm)
-target_link_libraries(${TARGET_NAME} glm)
+target_include_directories(${TARGET_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/submodules/glm)
+
+add_subdirectory(submodules/assimp)
+target_link_libraries(${TARGET_NAME} assimp)
+
+add_subdirectory(submodules/spdlog)
+target_link_libraries(${TARGET_NAME} spdlog)
 
 include_directories(src)
 include_directories(submodules/SDL/include)
@@ -57,7 +61,11 @@ include_directories(submodules/glm)
 include_directories(submodules/tinyxml2)
 include_directories(submodules/spdlog/include)
 include_directories(submodules/stb)
+include_directories(submodules/assimp/include)
 
 include_directories(external/glad/include)
 
 add_compile_definitions(_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING)
+
+get_target_property(SPDLOG_TYPE spdlog::spdlog TYPE)
+message(STATUS "spdlog type: ${SPDLOG_TYPE}")

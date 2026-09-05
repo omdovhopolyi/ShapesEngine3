@@ -7,9 +7,6 @@
 #include <Messenger/Messenger.h>
 #include <Messenger/Events/Common.h>
 
-//#include <ECS/SystemsManager.h>
-//#include <ECS/Systems/SDL/SDLWindowSystem.h>
-
 #include <Logger/Logger.h>
 
 #include <array>
@@ -55,8 +52,6 @@ namespace shen3
                     (event.key.mod == SDL_KMOD_LCTRL || event.key.mod == SDL_KMOD_RCTRL)
                 );
 
-                keysState[event.key.scancode] = false;
-
                 break;
             }
             case SDL_EVENT_KEY_UP: {
@@ -67,8 +62,6 @@ namespace shen3
                     (event.key.mod == SDL_KMOD_LSHIFT || event.key.mod == SDL_KMOD_RSHIFT),
                     (event.key.mod == SDL_KMOD_LCTRL || event.key.mod == SDL_KMOD_RCTRL)
                 );
-
-                keysState[event.key.scancode] = false;
 
                 break;
             }
@@ -83,10 +76,6 @@ namespace shen3
                     ctrl
                 );
 
-                if (event.button.button < 3) {
-                    buttonsState[event.button.button] = false;
-                }
-
                 break;
             }
             case SDL_EVENT_MOUSE_BUTTON_UP: {
@@ -99,10 +88,6 @@ namespace shen3
                     shift,
                     ctrl
                 );
-
-                if (event.button.button < 3) {
-                    buttonsState[event.button.button] = false;
-                }
 
                 break;
             }
@@ -208,33 +193,6 @@ namespace shen3
 
     void SDLInputManager::GenerateCharKeyMap()
     {
-        //CharKeyMap[{ 'A' }] = SDLK_A;
-        //CharKeyMap[{ 'B' }] = SDLK_B;
-        //CharKeyMap[{ 'C' }] = SDLK_C;
-        //CharKeyMap[{ 'D' }] = SDLK_D;
-        //CharKeyMap[{ 'E' }] = SDLK_E;
-        //CharKeyMap[{ 'F' }] = SDLK_F;
-        //CharKeyMap[{ 'G' }] = SDLK_G;
-        //CharKeyMap[{ 'H' }] = SDLK_H;
-        //CharKeyMap[{ 'I' }] = SDLK_I;
-        //CharKeyMap[{ 'J' }] = SDLK_J;
-        //CharKeyMap[{ 'K' }] = SDLK_K;
-        //CharKeyMap[{ 'L' }] = SDLK_L;
-        //CharKeyMap[{ 'M' }] = SDLK_M;
-        //CharKeyMap[{ 'N' }] = SDLK_N;
-        //CharKeyMap[{ 'O' }] = SDLK_O;
-        //CharKeyMap[{ 'P' }] = SDLK_P;
-        //CharKeyMap[{ 'Q' }] = SDLK_Q;
-        //CharKeyMap[{ 'R' }] = SDLK_R;
-        //CharKeyMap[{ 'S' }] = SDLK_S;
-        //CharKeyMap[{ 'T' }] = SDLK_T;
-        //CharKeyMap[{ 'U' }] = SDLK_U;
-        //CharKeyMap[{ 'V' }] = SDLK_V;
-        //CharKeyMap[{ 'W' }] = SDLK_W;
-        //CharKeyMap[{ 'X' }] = SDLK_X;
-        //CharKeyMap[{ 'Y' }] = SDLK_Y;
-        //CharKeyMap[{ 'Z' }] = SDLK_Z;
-
         _charKeyMap[{ 'a' }] = SDLK_A;
         _charKeyMap[{ 'b' }] = SDLK_B;
         _charKeyMap[{ 'c' }] = SDLK_C;
@@ -305,5 +263,5 @@ namespace shen3
         _charKeyMap["F10"] = SDLK_F10;
         _charKeyMap["F11"] = SDLK_F11;
         _charKeyMap["F12"] = SDLK_F12;
-    }\
+    }
 }

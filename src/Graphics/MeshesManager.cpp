@@ -4,6 +4,10 @@
 #include <Common/Assert.h>
 #include <Logger/Logger.h>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include <fstream>
 #include <format>
 #include <cstdio>
@@ -38,67 +42,79 @@ namespace shen3
 
     void MeshesManager::LoadMesh(const std::string& id, const std::string& filename)
     {
-        std::ifstream file(FilePath::Path(filename));
+        Assimp::Importer importer;
+        const aiScene* scene = importer.ReadFile(FilePath::Path(filename), aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+        if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+            const char* error = importer.GetErrorString();
+            Logger::Err("[OpenGLMeshesManager::LoadMesh] Assimp error: {}", error);
+            return;
+        }
+        
+        ProcessNode(id, scene->mRootNode, scene);
+    }
 
-        if (!file.is_open()) {
-            Logger::Log("[OpenGLMeshesManager::LoadMesh] Unable to open file: {}", filename);
+    void MeshesManager::ProcessNode(const std::string& id, aiNode* node, const aiScene* scene)
+    {
+        if (node->mNumChildren == 0) {
             return;
         }
 
-        MeshData meshData;
-
-        std::string line;
-
-        while (getline(file, line)) {
-            if (strncmp(line.c_str(), "v ", 2) == 0) {
-                Vec3 vertex;
-                (void)sscanf(line.c_str(), "v %f %f %f", &vertex.x, &vertex.y, &vertex.z);
-                meshData.vertices.push_back(vertex);
-            }
-            // tex coords info
-            if (strncmp(line.c_str(), "vt ", 3) == 0) {
-                Vec2 texCoord;
-                (void)sscanf(line.c_str(), "vt %f %f", &texCoord.x, &texCoord.y);
-                meshData.texCoords.push_back(texCoord);
-            }
-            // faces info
-            if (strncmp(line.c_str(), "f ", 2) == 0) {
-                int vertIndices[4];
-                int texIndices[4];
-                int normIndices[4];
-                int count = sscanf(line.c_str(), "f %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d",
-                    &vertIndices[0], &texIndices[0], &normIndices[0],
-                    &vertIndices[1], &texIndices[1], &normIndices[1],
-                    &vertIndices[2], &texIndices[2], &normIndices[2],
-                    &vertIndices[3], &texIndices[3], &normIndices[3]
-                );
-                if (count == 9) { // triangle
-                    Face face = {
-                        .a = vertIndices[0] - 1,
-                        .b = vertIndices[1] - 1,
-                        .c = vertIndices[2] - 1,
-                        .aUV = meshData.texCoords[texIndices[0] - 1],
-                        .bUV = meshData.texCoords[texIndices[1] - 1],
-                        .cUV = meshData.texCoords[texIndices[2] - 1],
-                        .color = 0xFFFFFFFF
-                    };
-                    meshData.faces.push_back(face);
-
-                    meshData.indices.push_back(face.a);
-                    meshData.indices.push_back(face.b);
-                    meshData.indices.push_back(face.c);
-
-                    meshData.uvs.push_back(face.aUV);
-                    meshData.uvs.push_back(face.bUV);
-                    meshData.uvs.push_back(face.cUV);
-                }
-                else {
-                    Assert(false, std::format("[OpenGLMeshesManager::LoadMesh] Only triangle faces are supported. Mesh: {}", filename));
-                }
-            }
+        if (node->mNumMeshes == 1 || node->mNumChildren > 1) {
+            Logger::Err("[MeshesManager::ProcessNode] There are unprocessed meshes for mesh id {}", id);
         }
 
-        file.close();
+
+        aiNode* childNode = node->mChildren[0];
+        aiMesh* mesh = scene->mMeshes[childNode->mMeshes[0]];
+        ProcessMesh(id, mesh, scene);
+    }
+
+    void MeshesManager::ProcessMesh(const std::string& id, aiMesh* mesh, const aiScene* scene)
+    {
+        MeshData meshData;
+
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+        {
+            MeshVertex vertex;
+            // positions
+            vertex.position.x = mesh->mVertices[i].x;
+            vertex.position.y = mesh->mVertices[i].y;
+            vertex.position.z = mesh->mVertices[i].z;
+            // normals
+            if (mesh->HasNormals())
+            {
+                vertex.normal.x = mesh->mNormals[i].x;
+                vertex.normal.y = mesh->mNormals[i].y;
+                vertex.normal.z = mesh->mNormals[i].z;
+            }
+            // texture coordinates
+            if (mesh->mTextureCoords[0])
+            {
+                vertex.texCoords.x = mesh->mTextureCoords[0][i].x;
+                vertex.texCoords.y = mesh->mTextureCoords[0][i].y;
+                // tangent
+                vertex.tangent.x = mesh->mTangents[i].x;
+                vertex.tangent.y = mesh->mTangents[i].y;
+                vertex.tangent.z = mesh->mTangents[i].z;
+                // bitangent
+                vertex.bitangent.x = mesh->mBitangents[i].x;
+                vertex.bitangent.y = mesh->mBitangents[i].y;
+                vertex.bitangent.z = mesh->mBitangents[i].z;
+            }
+            else {
+                vertex.texCoords = Vec2(0.0f, 0.0f);
+            }
+
+            meshData.vertices.push_back(vertex);
+        }
+
+        for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+        {
+            aiFace face = mesh->mFaces[i];
+            for (unsigned int j = 0; j < face.mNumIndices; j++) {
+                meshData.indices.push_back(face.mIndices[j]);
+            }
+        }
 
         AddMesh(id, CreateMesh(std::move(meshData)));
     }

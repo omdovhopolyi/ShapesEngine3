@@ -1,4 +1,5 @@
 <?xml version = "1.0"?>
 <textures>
     <texture id="brick_wall" file="assets/textures/brick_wall.png"/>
+    <texture id="dice" file="assets/textures/dice.png"/>
 </textures>

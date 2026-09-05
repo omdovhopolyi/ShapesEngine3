@@ -14,7 +14,7 @@ namespace shen3
 
     void ScenesManager::Start()
     {
-        auto mesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("square");
+        auto mesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("cube");
         auto material = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("default");
 
         auto scene = std::make_unique<Scene>();

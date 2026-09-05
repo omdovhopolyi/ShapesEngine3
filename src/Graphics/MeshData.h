@@ -4,23 +4,23 @@
 
 #include <vector>
 
+#define MAX_BONE_INFLUENCE 4
+
 namespace shen3
 {
-    struct Face {
-        int a = -1;
-        int b = -1;
-        int c = -1;
-        Vec2 aUV;
-        Vec2 bUV;
-        Vec2 cUV;
-        unsigned int color = 0xFFFFFFFF;
+
+    struct MeshVertex {
+        Vec3 position;
+        Vec3 normal;
+        Vec2 texCoords;
+        Vec3 tangent;
+        Vec3 bitangent;
+        int boneIDs[MAX_BONE_INFLUENCE];
+        float weights[MAX_BONE_INFLUENCE];
     };
 
     struct MeshData {
-        std::vector<Vec3> vertices;
-        std::vector<Vec2> texCoords;
-        std::vector<Face> faces;
-        std::vector<int> indices;
-        std::vector<Vec2> uvs;
+        std::vector<MeshVertex> vertices;
+        std::vector<unsigned int> indices;
     };
 }

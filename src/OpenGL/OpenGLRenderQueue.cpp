@@ -12,10 +12,15 @@ namespace shen3
 {
     REGISTER_MANAGERS_FACTORY(OpenGLRenderQueue)
 
+    void OpenGLRenderQueue::Start()
+    {
+        glEnable(GL_DEPTH_TEST);
+    }
+
     void OpenGLRenderQueue::BeginFrame()
     {
         glClearColor(0.2f, 0.3f, 0.4f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void OpenGLRenderQueue::EndFrame()

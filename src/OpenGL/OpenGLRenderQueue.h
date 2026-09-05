@@ -10,6 +10,7 @@ namespace shen3
         MANAGERS_FACTORY(RenderQueue)
 
     public:
+        void Start() override;
         void BeginFrame() override;
         void EndFrame() override;
 

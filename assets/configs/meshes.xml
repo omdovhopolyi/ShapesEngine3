@@ -2,4 +2,5 @@
 <meshes>
     <mesh id="square" file="assets/meshes/square.obj"/>
     <mesh id="square_2" file="assets/meshes/square.obj"/>
+    <mesh id="cube" file="assets/meshes/cube.obj"/>
 </meshes>

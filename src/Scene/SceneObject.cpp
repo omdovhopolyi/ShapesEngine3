@@ -73,6 +73,11 @@ namespace shen3
         return _transform.GetLocalTransformMat();
     }
 
+    Vec3 SceneObject::GetWorldPosition() const
+    {
+        return GetWorldTransformMat() * Vec4(0.f, 0.f, 0.f, 1.f);
+    }
+
     SceneObject* SceneObject::GetParent() const
     {
         return _parent;

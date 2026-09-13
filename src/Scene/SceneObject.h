@@ -37,6 +37,7 @@ namespace shen3
         void SetLocalTransform(const Transform& transform);
 
         Mat4 GetWorldTransformMat() const;
+        Vec3 GetWorldPosition() const;
 
         SceneObject* GetParent() const;
         void SetParent(SceneObject* parent);

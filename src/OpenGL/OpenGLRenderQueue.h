@@ -13,8 +13,5 @@ namespace shen3
         void Start() override;
         void BeginFrame() override;
         void EndFrame() override;
-
-    protected:
-        void ProcessCommand(const RenderCommand& command) override;
     };
 }

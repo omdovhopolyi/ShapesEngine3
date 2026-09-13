@@ -27,11 +27,4 @@ namespace shen3
     {
         GetManagers()->GetManager<SDLMainWindow>()->SwapBuffers();
     }
-
-    void OpenGLRenderQueue::ProcessCommand(const RenderCommand& command)
-    {
-        command.material->Use();
-        command.mesh->Bind();
-        command.mesh->Draw();
-    }
 }

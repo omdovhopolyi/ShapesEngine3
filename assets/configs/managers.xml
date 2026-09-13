@@ -6,6 +6,7 @@
     <manager type="OpenGLShadersManager"/>
     <manager type="MaterialsManager"/>
     <manager type="OpenGLMeshesManager"/>
+    <manager type="LightsManager"/>
     <manager type="SDLInputManager"/>
     <manager type="CameraManager"/>
     <manager type="ScenesManager"/>

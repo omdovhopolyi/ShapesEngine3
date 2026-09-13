@@ -21,7 +21,7 @@ namespace shen3
 
     protected:
         void PrepareCommand(RenderCommand& command, CameraComponent* camera);
-        virtual void ProcessCommand(const RenderCommand& command) = 0;
+        virtual void ProcessCommand(const RenderCommand& command);
 
     protected:
         std::vector<RenderCommand> _commands;

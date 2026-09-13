@@ -4,6 +4,7 @@
 #include <Components/MeshComponent.h>
 #include <Components/CameraComponent.h>
 #include <Components/PlayerInputComponent.h>
+#include <Components/LightComponent.h>
 #include <Graphics/MeshesManager.h>
 #include <Graphics/MaterialsManager.h>
 #include <Camera/CameraManager.h>
@@ -28,10 +29,10 @@ namespace shen3
         auto cameraObject = scene->CreateSceneObject(nullptr, "camera");
         auto camera = cameraObject->AddComponent<CameraComponent>();
         auto cameraTransform = cameraObject->GetLocalTransform();
-        cameraTransform.SetPosition({ 0.f, 0.f, 3.f });
+        cameraTransform.SetPosition({ -0.5f, 1.f, 3.f });
         cameraObject->SetLocalTransform(cameraTransform);
 
-        cameraObject->AddComponent<PlayerInputComponent>();
+        //cameraObject->AddComponent<PlayerInputComponent>();
 
         cameraObject->OnInstantiated();
         
@@ -39,6 +40,20 @@ namespace shen3
         auto sharedCameraBase = camera->shared_from_this();
         auto sharedCamera = std::static_pointer_cast<CameraComponent>(sharedCameraBase);
         cameraManager->SetMainCamera(sharedCamera);
+
+        auto lightObject = scene->CreateSceneObject(nullptr, "light");
+        auto lightTransform = lightObject->GetLocalTransform();
+        lightTransform.SetPosition({ 4.f, 2.f, 0.f });
+        lightTransform.SetScale({ 0.2f, 0.2f, 0.2f });
+        lightObject->SetLocalTransform(lightTransform);
+        auto light = lightObject->AddComponent<LightComponent>();
+        light->SetColor({ 0.f, 1.f, 0.5f });
+        lightObject->AddComponent<PlayerInputComponent>();
+        auto lightMesh = lightObject->AddComponent<MeshComponent>();
+        lightMesh->SetMesh(mesh);
+        lightMesh->SetMaterial(material);
+
+        lightObject->OnInstantiated();
 
         _scenes.emplace_back(std::move(scene));
     }

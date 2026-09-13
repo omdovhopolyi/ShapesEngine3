@@ -32,7 +32,7 @@ namespace shen3
         cameraTransform.SetPosition({ -0.5f, 1.f, 3.f });
         cameraObject->SetLocalTransform(cameraTransform);
 
-        //cameraObject->AddComponent<PlayerInputComponent>();
+        cameraObject->AddComponent<PlayerInputComponent>();
 
         cameraObject->OnInstantiated();
         
@@ -48,7 +48,7 @@ namespace shen3
         lightObject->SetLocalTransform(lightTransform);
         auto light = lightObject->AddComponent<LightComponent>();
         light->SetColor({ 0.f, 1.f, 0.5f });
-        lightObject->AddComponent<PlayerInputComponent>();
+        //lightObject->AddComponent<PlayerInputComponent>();
         auto lightMesh = lightObject->AddComponent<MeshComponent>();
         lightMesh->SetMesh(mesh);
         lightMesh->SetMaterial(material);

@@ -54,6 +54,7 @@ namespace shen3
         command.material->SetParam("uModel", command.transform);
         command.material->SetParam("uView", camera->GetViewMatrix());
         command.material->SetParam("uProjection", camera->GetProjectionsMatrix());
+        command.material->SetParam("uCameraPos", camera->GetWorldPosition());
     }
 
     void RenderQueue::ProcessCommand(const RenderCommand& command)

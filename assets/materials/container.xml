@@ -1,0 +1,5 @@
+<?xml version = "1.0"?>
+<material shader="default">
+    <texture type="baseTex" id="container"/>
+    <texture type="specularTex" id="container_specular"/>
+</material>

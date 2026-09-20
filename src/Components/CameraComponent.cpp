@@ -29,6 +29,11 @@ namespace shen3
         return CreateProjectionsMatrix(_fov, _ratio, _near, _far);
     }
 
+    Vec3 CameraComponent::GetWorldPosition() const
+    {
+        return _sceneObject->GetWorldPosition();
+    }
+
     void CameraComponent::InitSubscriptions()
     {
         _subscriptions.Subscribe<WindowResized>([this](const auto& event) {

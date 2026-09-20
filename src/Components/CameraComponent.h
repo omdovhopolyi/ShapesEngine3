@@ -2,6 +2,7 @@
 
 #include <Components/Component.h>
 #include <Math/Mat.h>
+#include <Math/Vec.h>
 #include <Messenger/SubscriptionsContainer.h>
 
 namespace shen3
@@ -18,6 +19,8 @@ namespace shen3
 
         Mat4 GetViewMatrix() const;
         Mat4 GetProjectionsMatrix() const;
+
+        Vec3 GetWorldPosition() const;
 
     private:
         void InitSubscriptions();

@@ -63,7 +63,6 @@ namespace shen3
             Logger::Err("[MeshesManager::ProcessNode] There are unprocessed meshes for mesh id {}", id);
         }
 
-
         aiNode* childNode = node->mChildren[0];
         aiMesh* mesh = scene->mMeshes[childNode->mMeshes[0]];
         ProcessMesh(id, mesh, scene);
@@ -73,23 +72,20 @@ namespace shen3
     {
         MeshData meshData;
 
-        for (unsigned int i = 0; i < mesh->mNumVertices; i++)
-        {
+        for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
             MeshVertex vertex;
             // positions
             vertex.position.x = mesh->mVertices[i].x;
             vertex.position.y = mesh->mVertices[i].y;
             vertex.position.z = mesh->mVertices[i].z;
             // normals
-            if (mesh->HasNormals())
-            {
+            if (mesh->HasNormals()) {
                 vertex.normal.x = mesh->mNormals[i].x;
                 vertex.normal.y = mesh->mNormals[i].y;
                 vertex.normal.z = mesh->mNormals[i].z;
             }
             // texture coordinates
-            if (mesh->mTextureCoords[0])
-            {
+            if (mesh->mTextureCoords[0]) {
                 vertex.texCoords.x = mesh->mTextureCoords[0][i].x;
                 vertex.texCoords.y = mesh->mTextureCoords[0][i].y;
                 // tangent
@@ -108,8 +104,7 @@ namespace shen3
             meshData.vertices.push_back(vertex);
         }
 
-        for (unsigned int i = 0; i < mesh->mNumFaces; i++)
-        {
+        for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
             aiFace face = mesh->mFaces[i];
             for (unsigned int j = 0; j < face.mNumIndices; j++) {
                 meshData.indices.push_back(face.mIndices[j]);

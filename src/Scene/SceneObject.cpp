@@ -105,6 +105,8 @@ namespace shen3
         }
         else {
             _parent = parent;
+            //auto thisPtr = std::make_shared<SceneObject>(_name);
+            //thisPtr.reset(this);
             _parent->AddChild(shared_from_this());
         }
     }

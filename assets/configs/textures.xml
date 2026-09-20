@@ -2,4 +2,6 @@
 <textures>
     <texture id="brick_wall" file="assets/textures/brick_wall.png"/>
     <texture id="dice" file="assets/textures/dice.png"/>
+    <texture id="container" file="assets/textures/container.png"/>
+    <texture id="container_specular" file="assets/textures/container_specular.png"/>
 </textures>

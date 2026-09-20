@@ -11,24 +11,24 @@ namespace shen3
         }
     }
 
-    void Scene::AddSceneObject(std::unique_ptr<SceneObject> sceneObject)
+    void Scene::AddSceneObject(const std::shared_ptr<SceneObject>& sceneObject)
     {
-        _sceneObjects.push_back(std::move(sceneObject));
+        _sceneObjects.push_back(sceneObject);
     }
 
     SceneObject* Scene::CreateSceneObject(SceneObject* parent, const std::string& name/* = "node"*/)
     {
-        auto sceneObjectPtr = std::make_unique<SceneObject>(name);
-        auto sceneObject = sceneObjectPtr.get();
-        sceneObject->SetScene(this);
+        auto sceneObjectPtr = std::make_shared<SceneObject>(name);
+        //auto sceneObject = sceneObjectPtr.get();
+        sceneObjectPtr->SetScene(this);
         if (parent) {
-            sceneObject->SetParent(parent);
+            sceneObjectPtr->SetParent(parent);
         }
         else {
-            _sceneObjects.push_back(std::move(sceneObjectPtr));
+            _sceneObjects.push_back(sceneObjectPtr);
         }
-        sceneObject->SetState(SceneObjectState::Instantiated);
-        return sceneObject;
+        sceneObjectPtr->SetState(SceneObjectState::Instantiated);
+        return sceneObjectPtr.get();
     }
 
     void Scene::RemoveSceneObject()

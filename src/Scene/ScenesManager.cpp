@@ -16,14 +16,16 @@ namespace shen3
     void ScenesManager::Start()
     {
         auto mesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("cube");
+        auto containerMesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("container");
         auto material = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("default");
+        auto containerMat = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("container");
 
         auto scene = std::make_unique<Scene>();
 
         auto sceneObject = scene->CreateSceneObject(nullptr, "test_object");
         auto meshComponent = sceneObject->AddComponent<MeshComponent>();
-        meshComponent->SetMesh(mesh);
-        meshComponent->SetMaterial(material);
+        meshComponent->SetMesh(containerMesh);
+        meshComponent->SetMaterial(containerMat);
         sceneObject->OnInstantiated();
 
         auto cameraObject = scene->CreateSceneObject(nullptr, "camera");
@@ -35,6 +37,16 @@ namespace shen3
         cameraObject->AddComponent<PlayerInputComponent>();
 
         cameraObject->OnInstantiated();
+
+        auto gunObject = scene->CreateSceneObject(cameraObject, "gun");
+        auto gunTransform = gunObject->GetLocalTransform();
+        gunTransform.SetPosition({ 1.f, 0.f, -2.f });
+        gunTransform.SetScale({ 0.2f, 0.2f, 0.2f });
+        gunObject->SetLocalTransform(gunTransform);
+        auto gunMesh = gunObject->AddComponent<MeshComponent>();
+        gunMesh->SetMesh(mesh);
+        gunMesh->SetMaterial(material);
+        gunObject->OnInstantiated();
         
         auto cameraManager = GetManagers()->GetManager<CameraManager>();
         auto sharedCameraBase = camera->shared_from_this();
@@ -43,11 +55,11 @@ namespace shen3
 
         auto lightObject = scene->CreateSceneObject(nullptr, "light");
         auto lightTransform = lightObject->GetLocalTransform();
-        lightTransform.SetPosition({ 4.f, 2.f, 0.f });
+        lightTransform.SetPosition({ 3.f, 2.f, 0.f });
         lightTransform.SetScale({ 0.2f, 0.2f, 0.2f });
         lightObject->SetLocalTransform(lightTransform);
         auto light = lightObject->AddComponent<LightComponent>();
-        light->SetColor({ 0.f, 1.f, 0.5f });
+        light->SetColor({ 1.f, 1.f, 1.f });
         //lightObject->AddComponent<PlayerInputComponent>();
         auto lightMesh = lightObject->AddComponent<MeshComponent>();
         lightMesh->SetMesh(mesh);

@@ -16,6 +16,7 @@ namespace shen3
     class Scene;
 
     class SceneObject
+        : public std::enable_shared_from_this<SceneObject>
     {
     public:
         SceneObject();

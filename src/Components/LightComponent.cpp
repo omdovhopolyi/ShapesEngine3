@@ -41,6 +41,24 @@ namespace shen3
         return _color;
     }
 
+    void LightComponent::SetOn(bool on)
+    {
+        if (_isOn != on) {
+            _isOn = on;
+            if (_isOn) {
+                Register();
+            }
+            else {
+                Unregister();
+            }
+        }
+    }
+
+    bool LightComponent::IsOn() const
+    {
+        return _isOn;
+    }
+
     void LightComponent::Register()
     {
         if (auto manager = ManagersFacade::Instance().GetManager<LightsManager>()) {

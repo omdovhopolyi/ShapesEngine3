@@ -1,0 +1,7 @@
+<?xml version = "1.0"?>
+<material shader="light">
+    <texture type="baseTex" id="container"/>
+    <param name="uColor" type="vec3">
+        <value x="1" y="1" z="1"/>
+    </param>
+</material>

@@ -2,4 +2,5 @@
 <materials>
     <material id="default" file="assets/materials/default.xml"/>
     <material id="container" file="assets/materials/container.xml"/>
+    <material id="light" file="assets/materials/light.xml"/>
 </materials>

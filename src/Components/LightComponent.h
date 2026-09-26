@@ -20,11 +20,15 @@ namespace shen3
         void SetColor(const Vec3& color);
         Vec3 GetColor() const;
 
+        void SetOn(bool on);
+        bool IsOn() const;
+
     protected:
         void Register();
         void Unregister();
 
     protected:
         Vec3 _color = Vec3(1.f);
+        bool _isOn = true;
     };
 }

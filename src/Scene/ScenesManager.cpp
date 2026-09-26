@@ -15,10 +15,14 @@ namespace shen3
 
     void ScenesManager::Start()
     {
+        // TODO scene loading
+
         auto mesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("cube");
         auto containerMesh = GetManagers()->GetManager<MeshesManager>()->GetMesh("container");
+
         auto material = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("default");
         auto containerMat = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("container");
+        auto lightMat = GetManagers()->GetManager<MaterialsManager>()->GetMaterial("light");
 
         auto scene = std::make_unique<Scene>();
 
@@ -33,9 +37,7 @@ namespace shen3
         auto cameraTransform = cameraObject->GetLocalTransform();
         cameraTransform.SetPosition({ -0.5f, 1.f, 3.f });
         cameraObject->SetLocalTransform(cameraTransform);
-
         cameraObject->AddComponent<PlayerInputComponent>();
-
         cameraObject->OnInstantiated();
 
         auto gunObject = scene->CreateSceneObject(cameraObject, "gun");
@@ -63,8 +65,7 @@ namespace shen3
         //lightObject->AddComponent<PlayerInputComponent>();
         auto lightMesh = lightObject->AddComponent<MeshComponent>();
         lightMesh->SetMesh(mesh);
-        lightMesh->SetMaterial(material);
-
+        lightMesh->SetMaterial(lightMat);
         lightObject->OnInstantiated();
 
         _scenes.emplace_back(std::move(scene));

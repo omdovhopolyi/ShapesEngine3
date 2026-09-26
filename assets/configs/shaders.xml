@@ -1,4 +1,5 @@
 <?xml version = "1.0"?>
 <shaders>
     <shader id="default" vert="assets/shaders/default.vert" frag="assets/shaders/default.frag"/>
+    <shader id="light" vert="assets/shaders/light.vert" frag="assets/shaders/light.frag"/>
 </shaders>

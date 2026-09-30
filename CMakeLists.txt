@@ -49,6 +49,15 @@ target_link_libraries(${TARGET_NAME} SDL3-static)
 add_subdirectory(submodules/glm)
 target_include_directories(${TARGET_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/submodules/glm)
 
+add_subdirectory(submodules/boost/libs/smart_ptr)
+target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/submodules/boost/libs/smart_ptr)
+
+add_subdirectory(submodules/boost/libs/config)
+target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/submodules/boost/libs/config)
+
+add_subdirectory(submodules/boost/libs/assert)
+target_include_directories(${TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/submodules/boost/libs/assert)
+
 add_subdirectory(submodules/assimp)
 target_link_libraries(${TARGET_NAME} assimp)
 
@@ -62,6 +71,9 @@ include_directories(submodules/tinyxml2)
 include_directories(submodules/spdlog/include)
 include_directories(submodules/stb)
 include_directories(submodules/assimp/include)
+include_directories(submodules/boost/libs/smart_ptr/include)
+include_directories(submodules/boost/libs/config/include)
+include_directories(submodules/boost/libs/assert/include)
 
 include_directories(external/glad/include)
 

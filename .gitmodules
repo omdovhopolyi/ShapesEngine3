@@ -16,3 +16,6 @@
 [submodule "submodules/assimp"]
 	path = submodules/assimp
 	url = https://github.com/assimp/assimp.git
+[submodule "submodules/boost"]
+	path = submodules/boost
+	url = https://github.com/boostorg/boost.git

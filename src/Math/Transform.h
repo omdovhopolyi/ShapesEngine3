@@ -33,8 +33,6 @@ namespace shen3
         Mat4 GetLocalTransformMat() const;
         Mat4 GetWorldTransformMat(const Mat4& parentTransform) const;
 
-        void UpdateTransform();
-
         void SetDirty(bool dirty);
         bool IsDirty() const;
 

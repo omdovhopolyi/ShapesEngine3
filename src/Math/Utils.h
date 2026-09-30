@@ -6,6 +6,7 @@ namespace shen3
 {
     Mat4 CreateViewMatrix(const Transform& transform);
     Mat4 CreateProjectionsMatrix(float fov, float ratio, float near, float far);
+    Mat4 TransposeInverseMatrix(const Mat4& transformMat);
     Vec2 Normalize(const Vec2& vec);
     void NormalizeThis(Vec2& vec);
     Vec3 Normalize(const Vec3& vec);

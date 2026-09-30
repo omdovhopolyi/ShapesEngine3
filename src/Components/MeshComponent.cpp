@@ -5,6 +5,7 @@
 #include <Math/Transform.h>
 #include <Scene/Scene.h>
 #include <Managers/ManagersFacade.h>
+#include <Math/Utils.h>
 
 namespace shen3
 {
@@ -20,6 +21,7 @@ namespace shen3
             command.mesh = _mesh;
             command.material = _material;
             command.transform = transform;
+            command.transposeInvMat = TransposeInverseMatrix(transform);
             renderQueue->AddCommand(std::move(command));
         }
     }

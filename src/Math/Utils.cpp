@@ -1,6 +1,7 @@
 #include <Math/Utils.h>
 
 #include <glm/glm.hpp>
+#include <glm/matrix.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -19,6 +20,11 @@ namespace shen3
     Mat4 CreateProjectionsMatrix(float fov, float ratio, float near, float far)
     {
         return glm::perspective(glm::radians(fov), ratio, near, far);
+    }
+
+    Mat4 TransposeInverseMatrix(const Mat4& transformMat)
+    {
+        return glm::transpose(glm::inverse(transformMat));
     }
 
     Vec2 Normalize(const Vec2& vec)

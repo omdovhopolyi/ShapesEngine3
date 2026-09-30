@@ -272,7 +272,7 @@ namespace shen3
                 transform.SetPosition(position);
                 transform.SetRotation(angle);
                 transform.SetScale(scale);
-                transform.UpdateTransform();
+                transform.Update();
 
                 return transform;
             }

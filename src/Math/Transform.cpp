@@ -104,7 +104,7 @@ namespace shen3
         return parentTransform * GetLocalTransformMat();
     }
 
-    void Transform::UpdateTransform()
+    void Transform::Update()
     {
         if (IsDirty()) {
             SetDirty(false);

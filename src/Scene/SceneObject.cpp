@@ -36,7 +36,7 @@ namespace shen3
             }
         }
 
-        _transform.UpdateTransform();
+        _transform.Update();
 
         for (auto& child : _children) {
             if (child) {

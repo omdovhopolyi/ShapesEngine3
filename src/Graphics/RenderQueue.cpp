@@ -52,6 +52,7 @@ namespace shen3
     void RenderQueue::PrepareCommand(RenderCommand& command, CameraComponent* camera)
     {
         command.material->SetParam("uModel", command.transform);
+        command.material->SetParam("uTrasposeInverse", command.transposeInvMat);
         command.material->SetParam("uView", camera->GetViewMatrix());
         command.material->SetParam("uProjection", camera->GetProjectionsMatrix());
         command.material->SetParam("uCameraPos", camera->GetWorldPosition());
